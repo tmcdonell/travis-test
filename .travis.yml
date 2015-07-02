@@ -10,7 +10,6 @@ addons:
       - alex-3.1.4
       - cabal-install-1.22
       - ghc-7.10.1
-      - clang-3.5
       - llvm-3.5
 
 env:
@@ -23,11 +22,10 @@ before_install:
     - export PATH=/opt/cabal/1.22/bin:${PATH}
     - export PATH=/opt/ghc/${GHC}/bin:${PATH}           # hvr-installed versions
     - export PATH=/usr/local/ghc/${GHC}/bin:${PATH}     # apt-installed versions
+    - export PATH=/usr/lib/llvm-3.5/bin:${PATH}
 
 install:
     - echo ${PATH}
-    - dpkg-query -L clang-3.5
-    - dpkg-query -L llvm-3.5
     - which -a cabal
     - which -a ghc
     - which -a opt

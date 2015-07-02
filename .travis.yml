@@ -14,7 +14,7 @@ addons:
 
 env:
     - GHC=7.8.4
-    - GHC=7.10.1
+    - GHC=7.10.1 LLVM=3.5
 
 before_install:
     - export PATH=/opt/alex/3.1.4/bin:${PATH}
@@ -22,9 +22,10 @@ before_install:
     - export PATH=/opt/cabal/1.22/bin:${PATH}
     - export PATH=/opt/ghc/${GHC}/bin:${PATH}           # hvr-installed versions
     - export PATH=/usr/local/ghc/${GHC}/bin:${PATH}     # apt-installed versions
-    - export PATH=/usr/lib/llvm-3.5/bin:${PATH}
+    - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
 
 install:
+    - ls /usr/lib/llvm*
     - echo ${PATH}
     - which -a cabal
     - which -a ghc

@@ -11,6 +11,7 @@ addons:
       - cabal-install-1.22
       - ghc-7.10.1
       - clang-3.5
+      - llvm-3.5
 
 env:
     - GHC=7.8.4
@@ -20,15 +21,12 @@ before_install:
     - export PATH=/opt/alex/3.1.4/bin:${PATH}
     - export PATH=/opt/happy/1.19.5/bin:${PATH}
     - export PATH=/opt/cabal/1.22/bin:${PATH}
-    - export PATH=/usr/local/ghc/${GHC}/bin:${PATH}
-    - export PATH=/usr/local/clang-3.5/bin:${PATH}
+    - export PATH=/opt/ghc/${GHC}/bin:${PATH}
 
 install:
-    - ls /usr/local/
-    - ls /usr/local/ghc/
     - echo ${PATH}
     - dpkg-query -L clang-3.5
-    - dpkg-query -L ghc-7.10.1
+    - dpkg-query -L llvm-3.5
     - which -a cabal
     - which -a ghc
     - which -a opt

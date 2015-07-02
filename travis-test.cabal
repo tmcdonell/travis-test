@@ -1,5 +1,6 @@
 name:                   travis-test
 version:                0.1.0.0
+license:                BSD3
 license-file:           LICENSE
 author:                 Trevor L. McDonell
 maintainer:             tmcdonell@cse.unsw.edu.au

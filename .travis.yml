@@ -4,6 +4,7 @@ addons:
     sources:
       - hvr-ghc
       - llvm-toolchain-precise
+      - llvm-toolchain-precise-3.5
     packages:
       - happy-1.19.5
       - alex-3.1.4

@@ -9,7 +9,7 @@ addons:
       - alex-3.1.4
       - cabal-install-1.22
       - ghc-7.10.1
-      - clang-3.5
+      - llvm-3.5
 
 env:
     - GHC=7.8.4
@@ -23,6 +23,7 @@ before_install:
     - export PATH=/usr/local/clang-3.5/bin:${PATH}
 
 install:
+    - ls /usr/local/
     - echo ${PATH}
     - which -a cabal
     - which -a ghc

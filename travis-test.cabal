@@ -12,7 +12,7 @@ executable travis-test
   -- other-modules:
   -- other-extensions:
   build-depends:
-    base >=4.8 && <4.9
+    base >=4.7 && <4.9
 
   ghc-options:          -fllvm -optlo-O3
 

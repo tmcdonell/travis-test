@@ -3,13 +3,15 @@ addons:
   apt:
     sources:
       - hvr-ghc
-      - llvm-toolchain-precise-3.5
+      - llvm-toolchain-precise
     packages:
       - happy-1.19.5
       - alex-3.1.4
       - cabal-install-1.22
       - ghc-7.10.1
       - llvm-3.5
+      - llvm-3.5-runtime
+      - libllvm3.5
 
 env:
     - GHC=7.8.4

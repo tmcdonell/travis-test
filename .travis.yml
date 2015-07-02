@@ -5,7 +5,7 @@ addons:
       - hvr-ghc
       - llvm-toolchain-precise-3.5
       - ubuntu-toolchain-r-test
-    packages:
+    packages: &base-pkgs
       - happy-1.19.5
       - alex-3.1.4
       - cabal-install-1.22
@@ -17,6 +17,7 @@ matrix:
       addons:
         apt:
           packages:
+            - *base-pkgs
             - ghc-7.10.1
             - llvm-3.5
 

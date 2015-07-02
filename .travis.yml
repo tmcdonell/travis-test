@@ -9,12 +9,16 @@ addons:
       - happy-1.19.5
       - alex-3.1.4
       - cabal-install-1.22
-      - ghc-7.10.1
-      - llvm-3.5
 
-env:
-    - GHC=7.8.4  LLVM=3.4                               # will use system installs of both
-    - GHC=7.10.1 LLVM=3.5
+matrix:
+  include:
+    - env: GHC=7.8.4  LLVM=3.4                          # will use system installs of both
+    - env: GHC=7.10.1 LLVM=3.5
+      addons:
+        apt:
+          packages:
+            - ghc-7.10.1
+            - llvm-3.5
 
 before_install:
     - export PATH=/opt/alex/3.1.4/bin:${PATH}

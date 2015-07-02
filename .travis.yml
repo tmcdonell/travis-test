@@ -1,23 +1,28 @@
 language: haskell
-addons:
-  apt:
-    sources:
-      - hvr-ghc
-      - llvm-toolchain-precise-3.5
-      - ubuntu-toolchain-r-test
-    packages: &base-pkgs
-      - happy-1.19.5
-      - alex-3.1.4
-      - cabal-install-1.22
 
 matrix:
   include:
     - env: GHC=7.8.4  LLVM=3.4                          # will use system installs of both
+      addons:
+        apt:
+          sources:
+            - hvr-ghc
+          packages:
+            - happy-1.19.5
+            - alex-3.1.4
+            - cabal-install-1.22
+
     - env: GHC=7.10.1 LLVM=3.5
       addons:
         apt:
+          sources:
+            - hvr-ghc
+            - llvm-toolchain-precise-3.5
+            - ubuntu-toolchain-r-test
           packages:
-            - *base-pkgs
+            - happy-1.19.5
+            - alex-3.1.4
+            - cabal-install-1.22
             - ghc-7.10.1
             - llvm-3.5
 

@@ -3,7 +3,6 @@ addons:
   apt:
     sources:
       - hvr-ghc
-      - llvm-toolchain-precise
       - llvm-toolchain-precise-3.5
       - ubuntu-toolchain-r-test
     packages:
@@ -11,9 +10,7 @@ addons:
       - alex-3.1.4
       - cabal-install-1.22
       - ghc-7.10.1
-      - llvm-3.5
-      - llvm-3.5-runtime
-      - libllvm3.5
+      - clang-3.5
 
 env:
     - GHC=7.8.4
@@ -28,7 +25,10 @@ before_install:
 
 install:
     - ls /usr/local/
+    - ls /usr/local/ghc/
     - echo ${PATH}
+    - dpkg-query -L clang-3.5
+    - dpkg-query -L ghc-7.10.1
     - which -a cabal
     - which -a ghc
     - which -a opt

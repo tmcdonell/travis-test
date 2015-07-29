@@ -26,6 +26,13 @@ matrix:
             - ghc-7.10.1
             - llvm-3.5
 
+cache:
+  directories:
+    - $HOME/.ghc
+    - $HOME/.cabal/bin
+    - $HOME/.cabal/lib
+    - $HOME/.cabal/share
+
 before_install:
     - export PATH=/opt/alex/3.1.4/bin:${PATH}
     - export PATH=/opt/happy/1.19.5/bin:${PATH}
@@ -49,6 +56,13 @@ install:
     - llc --version; true
 
 script:
-    - cabal install
+    - cabal install --upgrade-dependencies
     - travis-test
+
+after_failure:
+    # Nuke the cache
+    - $HOME/.ghc
+    - $HOME/.cabal/bin
+    - $HOME/.cabal/lib
+    - $HOME/.cabal/share
 

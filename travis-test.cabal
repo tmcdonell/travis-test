@@ -14,7 +14,7 @@ executable travis-test
   -- other-extensions:
   build-depends:
       base >= 4.7  && < 4.9
-    , lens <  4.12
+    , lens
 
   ghc-options:          -fllvm -optlo-O3
 

@@ -55,14 +55,19 @@ install:
     - opt --version; true
     - llc --version; true
 
-script:
-    - cabal install --upgrade-dependencies
-    - travis-test
+    # Install and upgrade the dependencies. Since we cache the cabal directory,
+    # if there are any problems throw it away and try again.
+    #
+    - travis_retry if [ ! $( cabal install --only-dependencies --upgrade-dependencies --enable-tests ${MODE} ) ]; then \
+          rm -rf $HOME/.ghc; \
+          rm -rf $HOME/.cabal/bin; \
+          rm -rf $HOME/.cabal/lib; \
+          rm -rf $HOME/.cabal/share; \
+          cabal update; \
+          ghc-pkg recache --user; \
+        fi
 
-after_failure:
-    # Nuke the cache
-    - $HOME/.ghc
-    - $HOME/.cabal/bin
-    - $HOME/.cabal/lib
-    - $HOME/.cabal/share
+script:
+    - cabal install
+    - travis-test
 

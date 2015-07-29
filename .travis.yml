@@ -11,6 +11,7 @@ matrix:
             - happy-1.19.5
             - alex-3.1.4
             - cabal-install-1.22
+            - nvidia-cuda-toolkit
 
     - env: GHC=7.10.1 LLVM=3.5
       addons:
@@ -25,6 +26,7 @@ matrix:
             - cabal-install-1.22
             - ghc-7.10.1
             - llvm-3.5
+            - nvidia-cuda-toolkit
 
 cache:
   directories:
@@ -48,12 +50,14 @@ install:
     - which -a llc
     - which -a alex
     - which -a happy
+    - which -a nvcc
     - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
     - cabal --version
     - alex --version
     - happy --version
     - opt --version; true
     - llc --version; true
+    - nvcc --version
 
     - travis_retry .travis/install_dependencies.sh
 

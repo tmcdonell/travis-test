@@ -13,8 +13,6 @@ if [ $status -ne 0 ]; then
     rm -rf $HOME/.cabal/bin
     rm -rf $HOME/.cabal/lib
     rm -rf $HOME/.cabal/share
-    cabal update
-    ghc-pkg recache --user
 fi
 exit $status
 

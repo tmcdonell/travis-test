@@ -63,9 +63,9 @@ before_install:
       if [ ${GHC%.*} == 7.8 ]; then
         # required to install the 'cuda' package
         travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal
-        ls -ld $HOME/.stack
-        ls -l $HOME/.stack
       fi
+  - ls -l $HOME
+  - ls -l $HOME/.stack
   - echo $PATH
   - sudo echo $PATH
 

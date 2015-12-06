@@ -1,19 +1,23 @@
-language: haskell
+# vim: nospell
+language: c
+sudo: true
 
 matrix:
   include:
-    - env: GHC=7.8.4  LLVM=3.4                          # will use system installs of both
+    - env: GHC=7.8.4 LLVM=3.4
+      compiler: "#GHC 7.8"
       addons:
         apt:
           sources:
             - hvr-ghc
           packages:
+            - ghc-7.8.4
+            - cabal-install-1.22
             - happy-1.19.5
             - alex-3.1.4
-            - cabal-install-1.22
-            - nvidia-cuda-toolkit
 
-    - env: GHC=7.10.1 LLVM=3.5
+    - env: GHC=7.10.2 LLVM=3.5
+      compiler: "#GHC 7.10"
       addons:
         apt:
           sources:
@@ -21,47 +25,66 @@ matrix:
             - llvm-toolchain-precise-3.5
             - ubuntu-toolchain-r-test
           packages:
+            - ghc-7.10.2
+            - cabal-install-1.22
             - happy-1.19.5
             - alex-3.1.4
-            - cabal-install-1.22
-            - ghc-7.10.1
             - llvm-3.5
-            - nvidia-cuda-toolkit
 
 cache:
   directories:
-    - $HOME/.ghc
-    - $HOME/.cabal/bin
-    - $HOME/.cabal/lib
-    - $HOME/.cabal/share
+    - $HOME/.stack
+
+# cache:
+#   directories:
+#     - $HOME/.ghc
+#     - $HOME/.cabal/bin
+#     - $HOME/.cabal/lib
+#     - $HOME/.cabal/share
 
 before_install:
-    - export PATH=/opt/alex/3.1.4/bin:${PATH}
-    - export PATH=/opt/happy/1.19.5/bin:${PATH}
-    - export PATH=/opt/cabal/1.22/bin:${PATH}
-    - export PATH=/opt/ghc/${GHC}/bin:${PATH}           # hvr-installed versions
-    - export PATH=/usr/local/ghc/${GHC}/bin:${PATH}     # system installed versions
-    - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
+  - unset CC
+  - export PATH=/opt/alex/3.1.4/bin:${PATH}
+  - export PATH=/opt/happy/1.19.5/bin:${PATH}
+  - export PATH=/opt/cabal/1.22/bin:${PATH}
+  - export PATH=/opt/ghc/${GHC}/bin:${PATH}
+  - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
+
+  # Fetch stack
+  - mkdir $HOME/bin
+  - export PATH=$HOME/bin:$PATH
+  - travis_retry curl -L "https://www.stackage.org/stack/linux-x86_64" | gunzip | tar -x
+  - mv stack-*/stack $HOME/bin
+  - travis_retry stack setup
+  - |
+      if [ ${GHC%.*} == 7.8 ]; then
+        # required to install the 'cuda' package
+        travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal
+        ls -ld $HOME/.stack
+        ls -l $HOME/.stack
+      fi
+  - echo $PATH
+  - sudo echo $PATH
 
 install:
-    - which -a cabal
-    - which -a ghc
-    - which -a opt
-    - which -a llc
-    - which -a alex
-    - which -a happy
-    - which -a nvcc
-    - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
-    - cabal --version
-    - alex --version
-    - happy --version
-    - opt --version; true
-    - llc --version; true
-    - nvcc --version
+  - which -a stack
+  - which -a cabal
+  - which -a ghc
+  - which -a opt
+  - which -a llc
+  - which -a alex
+  - which -a happy
+  - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
+  - stack --version
+  - cabal --version
+  - alex --version
+  - happy --version
+  - opt --version; true
+  - llc --version; true
 
-    - travis_retry .travis/install_dependencies.sh
+  # - travis_retry .travis/install_dependencies.sh
 
 script:
-    - cabal install
-    - travis-test
+  - stack build
+  - travis-test
 

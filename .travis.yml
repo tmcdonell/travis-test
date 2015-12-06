@@ -89,5 +89,5 @@ install:
 
 script:
   - stack build
-  - travis-test
+  - stack exec travis-test
 

@@ -2,6 +2,6 @@ module Main where
 
 main :: IO ()
 main = do
-  putStrLn "Hello world"
-  putStrLn "This is a travis build test"
+  putStrLn "Hello, travis"
+  putStrLn "This is a build test"
 

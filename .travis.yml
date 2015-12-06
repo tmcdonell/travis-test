@@ -1,6 +1,8 @@
 # vim: nospell
 language: c
 sudo: true
+dist: precise
+group: edge
 
 matrix:
   include:

@@ -66,8 +66,11 @@ before_install:
       fi
   - ls -la $HOME
   - ls -la $HOME/.stack
+  - ls -la $HOME/.stack/indices
+  - ls -la $HOME/.stack/indices/*
+  - ls -la $HOME/.stack/indices/*/*
   - which stack
-  - sudo which stack
+  - sudo -E which stack
 
 install:
   - which -a stack

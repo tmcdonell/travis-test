@@ -64,10 +64,10 @@ before_install:
         # required to install the 'cuda' package
         travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal
       fi
-  - ls -l $HOME
-  - ls -l $HOME/.stack
-  - echo $PATH
-  - sudo echo $PATH
+  - ls -la $HOME
+  - ls -la $HOME/.stack
+  - which stack
+  - sudo which stack
 
 install:
   - which -a stack

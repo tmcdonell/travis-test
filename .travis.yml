@@ -1,22 +1,22 @@
 # vim: nospell
 language: generic
 sudo: required
-dist: precise
+dist: trusty
 
 matrix:
   include:
-    - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
-      compiler: "#GHC 7.8"
-      addons:
-        apt:
-          sources:
-            - hvr-ghc
-          packages:
-            - ghc-7.8.4
-            - cabal-install-1.22
-            - happy-1.19.5
-            - alex-3.1.4
-            - libcudart4
+    # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
+    #   compiler: "#GHC 7.8"
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - hvr-ghc
+    #       packages:
+    #         - ghc-7.8.4
+    #         - cabal-install-1.22
+    #         - happy-1.19.5
+    #         - alex-3.1.4
+    #         - nvidia-cuda-dev
 
     - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
       compiler: "#GHC 7.10"
@@ -32,7 +32,7 @@ matrix:
             - happy-1.19.5
             - alex-3.1.4
             - llvm-3.5
-            - libcudart7.5
+            - nvidia-cuda-dev
 
 cache:
   directories:
@@ -46,7 +46,7 @@ cache:
 #     - $HOME/.cabal/share
 
 before_install:
-  - unset CC
+  # - unset CC
   - export PATH=/opt/alex/3.1.4/bin:${PATH}
   - export PATH=/opt/happy/1.19.5/bin:${PATH}
   - export PATH=/opt/cabal/1.22/bin:${PATH}
@@ -60,20 +60,20 @@ before_install:
   - mv stack-*/stack $HOME/bin
   - ln -s stack-${GHC%.*}.yaml stack.yaml
   - travis_retry stack setup --no-terminal
-  - |
-      if [ ${GHC%.*} == 7.8 ]; then
-        # required to install the 'cuda' package
-        travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal --allow-different-user --no-terminal
-        # GCE architecture doesn't have enough space in /tmp to install stack
-        # locally, so we need to install via apt and then --upgrade-cabal using
-        # 'sudo'. This fixes the resulting permissions.
-        sudo chown -R $USER:$USER $HOME/.stack
-      fi
-  - ls -la $HOME
-  - ls -la $HOME/.stack
-  - ls -la $HOME/.stack/indices
-  - ls -la $HOME/.stack/indices/*
-  - ls -la $HOME/.stack/indices/*/*
+  # - |
+  #     if [ ${GHC%.*} == 7.8 ]; then
+  #       # required to install the 'cuda' package
+  #       travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal --allow-different-user --no-terminal
+  #       # GCE architecture doesn't have enough space in /tmp to install stack
+  #       # locally, so we need to install via apt and then --upgrade-cabal using
+  #       # 'sudo'. This fixes the resulting permissions.
+  #       sudo chown -R $USER:$USER $HOME/.stack
+  #     fi
+  # - ls -la $HOME
+  # - ls -la $HOME/.stack
+  # - ls -la $HOME/.stack/indices
+  # - ls -la $HOME/.stack/indices/*
+  # - ls -la $HOME/.stack/indices/*/*
 
   # Install CUDA
   # - source .travis/install-cuda-trusty.sh

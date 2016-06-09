@@ -16,6 +16,7 @@ matrix:
             - cabal-install-1.22
             - happy-1.19.5
             - alex-3.1.4
+            - libcudart4
 
     - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
       compiler: "#GHC 7.10"
@@ -31,6 +32,7 @@ matrix:
             - happy-1.19.5
             - alex-3.1.4
             - llvm-3.5
+            - libcudart7.5
 
 cache:
   directories:
@@ -74,7 +76,7 @@ before_install:
   - ls -la $HOME/.stack/indices/*/*
 
   # Install CUDA
-  - source .travis/install-cuda-trusty.sh
+  # - source .travis/install-cuda-trusty.sh
 
 install:
   - which -a stack

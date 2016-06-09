@@ -12,7 +12,8 @@ matrix:
             - hvr-ghc
           packages:
             - libgmp-dev
-            - nvidia-common
+            - cabal-install-1.22
+            # - nvidia-common
             # - nvidia-current
             - nvidia-cuda-toolkit
             - nvidia-cuda-dev
@@ -95,21 +96,21 @@ before_install:
   # - source .travis/install-cuda-trusty.sh
 
 install:
-  - which -a stack
-  - which -a cabal
-  - which -a ghc
-  - which -a opt
-  - which -a llc
-  - which -a alex
-  - which -a happy
-  - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"
-  - stack --version
-  - cabal --version
-  - alex --version
-  - happy --version
+  - which -a stack; true
+  - which -a cabal; true
+  - which -a ghc; true
+  - which -a opt; true
+  - which -a llc; true
+  - which -a alex; true
+  - which -a happy; true
+  - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"; true
+  - stack --version; true
+  - cabal --version; true
+  - alex --version; true
+  - happy --version; true
   - opt --version; true
   - llc --version; true
-  - nvcc --version
+  - nvcc --version; true
 
   # - travis_retry .travis/install_dependencies.sh
 

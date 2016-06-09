@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set +e  # exit immediately on error
-set +x  # echo commands before they are executed
+set -e  # exit immediately on error
+set -x  # echo commands before they are executed
 
 travis_retry wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_${CUDA}_amd64.deb
 travis_retry sudo dpkg -i cuda-repo-ubuntu1404_${CUDA}_amd64.deb

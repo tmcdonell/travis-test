@@ -8,9 +8,12 @@ matrix:
     - env:
       addons:
         apt:
+          sources:
+            - hvr-ghc
           packages:
+            - ghc-7.10.3
             - nvidia-common
-            - nvidia-current
+            # - nvidia-current
             - nvidia-cuda-toolkit
             - nvidia-cuda-dev
 

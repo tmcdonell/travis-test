@@ -23,8 +23,8 @@ matrix:
         apt:
           sources:
             - hvr-ghc
-            - llvm-toolchain-precise-3.5
-            - ubuntu-toolchain-r-test
+            # - llvm-toolchain-precise-3.5
+            # - ubuntu-toolchain-r-test
           packages:
             - ghc-7.10.3
             - cabal-install-1.22
@@ -57,15 +57,15 @@ before_install:
   - travis_retry curl -L "https://www.stackage.org/stack/linux-x86_64" | gunzip | tar -x
   - mv stack-*/stack $HOME/bin
   - ln -s stack-${GHC%.*}.yaml stack.yaml
-  - travis_retry stack setup
+  - travis_retry stack setup --no-terminal
   - |
       if [ ${GHC%.*} == 7.8 ]; then
         # required to install the 'cuda' package
-        travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal
+        travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal --allow-different-user --no-terminal
         # GCE architecture doesn't have enough space in /tmp to install stack
         # locally, so we need to install via apt and then --upgrade-cabal using
         # 'sudo'. This fixes the resulting permissions.
-        sudo chown -R travis:travis $HOME/.stack
+        sudo chown -R $USER:$USER $HOME/.stack
       fi
   - ls -la $HOME
   - ls -la $HOME/.stack
@@ -96,6 +96,6 @@ install:
   # - travis_retry .travis/install_dependencies.sh
 
 script:
-  - stack build
+  - stack build --no-terminal
   - stack exec travis-test
 

@@ -1,12 +1,11 @@
 # vim: nospell
-language: c
-sudo: true
-dist: precise
-group: edge
+language: generic
+sudo: required
+dist: trusty
 
 matrix:
   include:
-    - env: GHC=7.8.4 LLVM=3.4
+    - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
       compiler: "#GHC 7.8"
       addons:
         apt:
@@ -18,7 +17,7 @@ matrix:
             - happy-1.19.5
             - alex-3.1.4
 
-    - env: GHC=7.10.2 LLVM=3.5
+    - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
       compiler: "#GHC 7.10"
       addons:
         apt:
@@ -27,7 +26,7 @@ matrix:
             - llvm-toolchain-precise-3.5
             - ubuntu-toolchain-r-test
           packages:
-            - ghc-7.10.2
+            - ghc-7.10.3
             - cabal-install-1.22
             - happy-1.19.5
             - alex-3.1.4
@@ -74,6 +73,9 @@ before_install:
   - ls -la $HOME/.stack/indices/*
   - ls -la $HOME/.stack/indices/*/*
 
+  # Install CUDA
+  - source .travis/install-cuda-trusty.sh
+
 install:
   - which -a stack
   - which -a cabal
@@ -89,6 +91,7 @@ install:
   - happy --version
   - opt --version; true
   - llc --version; true
+  - nvcc --version
 
   # - travis_retry .travis/install_dependencies.sh
 

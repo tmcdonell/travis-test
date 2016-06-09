@@ -31,7 +31,7 @@ matrix:
             - cabal-install-1.22
             - happy-1.19.5
             - alex-3.1.4
-            - llvm-3.5
+            # - llvm-3.5
             - nvidia-cuda-dev
 
 cache:

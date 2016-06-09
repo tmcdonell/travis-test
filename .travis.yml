@@ -35,6 +35,7 @@ matrix:
             - nvidia-cuda-toolkit
             - nvidia-cuda-dev
             - nvidia-opencl-dev
+            - nvidia-current-updates
 
 cache:
   directories:

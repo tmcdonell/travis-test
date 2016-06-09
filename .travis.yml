@@ -1,10 +1,19 @@
 # vim: nospell
 language: generic
-sudo: required
-dist: precise
+sudo: false
+# dist: precise
 
 matrix:
   include:
+    - env:
+      addons:
+        apt:
+          packages:
+            - nvidia-common
+            - nvidia-current
+            - nvidia-cuda-toolkit
+            - nvidia-cuda-dev
+
     # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
     #   compiler: "#GHC 7.8"
     #   addons:
@@ -18,24 +27,24 @@ matrix:
     #         - alex-3.1.4
     #         - nvidia-cuda-toolkit
 
-    - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
-      compiler: "#GHC 7.10"
-      addons:
-        apt:
-          sources:
-            - hvr-ghc
-            # - llvm-toolchain-precise-3.5
-            # - ubuntu-toolchain-r-test
-          packages:
-            - ghc-7.10.3
-            - cabal-install-1.22
-            - happy-1.19.5
-            - alex-3.1.4
-            # - llvm-3.5
-            - nvidia-cuda-toolkit
-            - nvidia-cuda-dev
-            - nvidia-opencl-dev
-            - nvidia-current
+    # - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
+    #   compiler: "#GHC 7.10"
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - hvr-ghc
+    #         # - llvm-toolchain-precise-3.5
+    #         # - ubuntu-toolchain-r-test
+    #       packages:
+    #         - ghc-7.10.3
+    #         - cabal-install-1.22
+    #         - happy-1.19.5
+    #         - alex-3.1.4
+    #         # - llvm-3.5
+    #         - nvidia-cuda-toolkit
+    #         - nvidia-cuda-dev
+    #         - nvidia-opencl-dev
+    #         - nvidia-current
 
 cache:
   directories:
@@ -50,12 +59,12 @@ cache:
 
 before_install:
   # - unset CC
-  - export PATH=/opt/alex/3.1.4/bin:${PATH}
-  - export PATH=/opt/happy/1.19.5/bin:${PATH}
-  - export PATH=/opt/cabal/1.22/bin:${PATH}
-  - export PATH=/opt/ghc/${GHC}/bin:${PATH}
-  - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
-  - export PATH=/usr/local/cuda/bin:${PATH}
+  # - export PATH=/opt/alex/3.1.4/bin:${PATH}
+  # - export PATH=/opt/happy/1.19.5/bin:${PATH}
+  # - export PATH=/opt/cabal/1.22/bin:${PATH}
+  # - export PATH=/opt/ghc/${GHC}/bin:${PATH}
+  # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
+  # - export PATH=/usr/local/cuda/bin:${PATH}
 
   # Fetch stack
   - mkdir $HOME/bin
@@ -90,7 +99,7 @@ install:
   - which -a llc
   - which -a alex
   - which -a happy
-  - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
+  - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"
   - stack --version
   - cabal --version
   - alex --version

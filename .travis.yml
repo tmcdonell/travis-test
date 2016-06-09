@@ -1,6 +1,7 @@
 # vim: nospell
 language: generic
 sudo: false
+dist: trusty
 # dist: precise
 
 matrix:

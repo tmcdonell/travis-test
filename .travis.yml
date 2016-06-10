@@ -6,7 +6,7 @@ dist: trusty
 
 matrix:
   include:
-    - env: GHC=7.10.3
+    - env: GHC=7.10.3 LLVM=3.5.2
       addons:
         apt:
           sources:
@@ -18,8 +18,8 @@ matrix:
             # - nvidia-current
             - nvidia-cuda-toolkit
             # - nvidia-cuda-dev
-            - llvm-3.6-dev
-            - llvm-3.5-dev
+            # - llvm-3.6-dev
+            # - llvm-3.5-dev
 
     # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
     #   compiler: "#GHC 7.8"
@@ -97,6 +97,13 @@ before_install:
 
   # Install CUDA
   # - source .travis/install-cuda-trusty.sh
+
+  # Try to install LLVM manually
+  - export LLVM_HOME=${HOME}/llvm-${LLVM}
+  - export PATH=${LLVM_HOME}/bin:${PATH}
+  - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
+  - mkdir -p ${LLVM_HOME}
+  - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
 
 install:
   - which -a stack; true

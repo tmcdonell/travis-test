@@ -11,6 +11,7 @@ matrix:
         apt:
           sources:
             - hvr-ghc
+            - ubuntu-toolchain-r-test
           packages:
             - libgmp-dev              # ghc
             - libstdc++6              # llvm

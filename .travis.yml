@@ -18,6 +18,8 @@ matrix:
             # - nvidia-current
             - nvidia-cuda-toolkit
             # - nvidia-cuda-dev
+            - llvm-3.6-dev
+            - llvm-3.5-dev
 
     # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
     #   compiler: "#GHC 7.8"

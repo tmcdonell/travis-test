@@ -12,7 +12,8 @@ matrix:
           sources:
             - hvr-ghc
           packages:
-            - libgmp-dev
+            - libgmp-dev              # ghc
+            - libstdc++6              # llvm
             - cabal-install-1.22
             # - nvidia-common
             # - nvidia-current

@@ -135,16 +135,16 @@ install:
   - gcc --version; true
   - g++ --version; true
 
-  - mkdir -p $HOME/bin
-  - export PATH=$HOME/bin:$PATH
-  - ln -s /usr/bin/g++-4.8 $HOME/bin/g++
-  - ln -s /usr/bin/gcc-4.8 $HOME/bin/gcc
+  # - mkdir -p $HOME/bin
+  # - export PATH=$HOME/bin:$PATH
+  # - ln -s /usr/bin/g++-4.8 $HOME/bin/g++
+  # - ln -s /usr/bin/gcc-4.8 $HOME/bin/gcc
 
   # - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
   # - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
 
-  - stack install llvm-general --no-terminal --only-dependencies
-  # - stack install llvm-general --no-terminal
+  - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
+  - stack install llvm-general --no-terminal
 
 script:
   - stack build --no-terminal

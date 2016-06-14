@@ -135,6 +135,9 @@ install:
   - gcc --version; true
   - g++ --version; true
 
+  - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
+  - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
+
   - stack install llvm-general --no-terminal --only-dependencies
   - stack install llvm-general --no-terminal --ghc-options='-pgmc g++-4.8'
 

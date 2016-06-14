@@ -115,6 +115,8 @@ before_install:
   - source .travis/install-llvm-trusty.sh
 
 install:
+  - which -a gcc
+  - which -a g++
   - which -a stack; true
   - which -a cabal; true
   - which -a ghc; true

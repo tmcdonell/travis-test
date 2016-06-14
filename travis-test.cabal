@@ -14,7 +14,7 @@ executable travis-test
   -- other-extensions:
   build-depends:
       base >= 4.7  && < 4.9
-    , cuda
+    -- , cuda
     -- , lens
 
   -- ghc-options:          -fllvm -optlo-O3

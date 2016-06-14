@@ -4,24 +4,33 @@ sudo: false
 dist: trusty
 # dist: precise
 
+cache:
+  directories:
+    - $HOME/.stack
+    - $HOME/llvm
+
 matrix:
   include:
-    - env: GHC=7.10.3 LLVM=3.5.2
-      addons:
-        apt:
-          sources:
-            - hvr-ghc
-            - ubuntu-toolchain-r-test
-          packages:
-            - libgmp-dev              # ghc
-            - libstdc++6              # llvm
-            - cabal-install-1.22
-            # - nvidia-common
-            # - nvidia-current
-            - nvidia-cuda-toolkit
-            # - nvidia-cuda-dev
-            # - llvm-3.6-dev
-            # - llvm-3.5-dev
+    - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2
+      compiler: "GHC 7.10"
+      addons: { apt: { sources: [ hvr-ghc, ubuntu-toolchain-r-test ], packages: [ nvidia-cuda-toolkit, libstdc++6, g++-4.8, libedit-dev, libgmp-dev, cabal-install-1.22, happy-1.19.5, alex-3.1.7 ] }}
+
+#     - env: GHC=7.10.3 LLVM=3.5.2
+#       addons:
+#         apt:
+#           sources:
+#             - hvr-ghc
+#             - ubuntu-toolchain-r-test
+#           packages:
+#             - libgmp-dev              # ghc
+#             - libstdc++6              # llvm
+#             - cabal-install-1.22
+#             # - nvidia-common
+#             # - nvidia-current
+#             - nvidia-cuda-toolkit
+#             # - nvidia-cuda-dev
+#             # - llvm-3.6-dev
+#             # - llvm-3.5-dev
 
     # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
     #   compiler: "#GHC 7.8"
@@ -55,10 +64,6 @@ matrix:
     #         - nvidia-opencl-dev
     #         - nvidia-current
 
-cache:
-  directories:
-    - $HOME/.stack
-
 # cache:
 #   directories:
 #     - $HOME/.ghc
@@ -67,13 +72,13 @@ cache:
 #     - $HOME/.cabal/share
 
 before_install:
-  - unset CC
+  # - unset CC
   - export PATH=/opt/alex/3.1.4/bin:${PATH}
   - export PATH=/opt/happy/1.19.5/bin:${PATH}
-  - export PATH=/opt/cabal/1.22/bin:${PATH}
-  - export PATH=/opt/ghc/${GHC}/bin:${PATH}
-  - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
-  - export PATH=/usr/local/cuda/bin:${PATH}
+  - export PATH=/opt/cabal/${CABAL}/bin:${PATH}
+  # - export PATH=/opt/ghc/${GHC}/bin:${PATH}
+  # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
+  # - export PATH=/usr/local/cuda/bin:${PATH}
 
   # Fetch stack
   - mkdir $HOME/bin
@@ -82,6 +87,7 @@ before_install:
   - mv stack-*/stack $HOME/bin
   - ln -s stack-${GHC%.*}.yaml stack.yaml
   - travis_retry stack setup --no-terminal
+
   # - |
   #     if [ ${GHC%.*} == 7.8 ]; then
   #       # required to install the 'cuda' package
@@ -101,11 +107,12 @@ before_install:
   # - source .travis/install-cuda-trusty.sh
 
   # Try to install LLVM manually
-  - export LLVM_HOME=${HOME}/llvm-${LLVM}
-  - export PATH=${LLVM_HOME}/bin:${PATH}
-  - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
-  - mkdir -p ${LLVM_HOME}
-  - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
+  # - export LLVM_HOME=${HOME}/llvm-${LLVM}
+  # - export PATH=${LLVM_HOME}/bin:${PATH}
+  # - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
+  # - mkdir -p ${LLVM_HOME}
+  # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
+  - source .travis/install-llvm-trusty.sh
 
 install:
   - which -a stack; true
@@ -123,8 +130,6 @@ install:
   - opt --version; true
   - llc --version; true
   - nvcc --version; true
-
-  # - travis_retry .travis/install_dependencies.sh
 
 script:
   - stack build --no-terminal

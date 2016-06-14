@@ -115,8 +115,8 @@ before_install:
   - source .travis/install-llvm-trusty.sh
 
 install:
-  - which -a gcc
-  - which -a g++
+  - which -a gcc; true
+  - which -a g++; true
   - which -a stack; true
   - which -a cabal; true
   - which -a ghc; true
@@ -132,8 +132,11 @@ install:
   - opt --version; true
   - llc --version; true
   - nvcc --version; true
+  - gcc --version; true
+  - g++ --version; true
 
-  - CC=gcc-4.8 CXX=g++-4.8 stack install llvm-general
+  - stack install llvm-general --no-terminal --only-dependencies
+  - stack install llvm-general --no-terminal --ghc-options='-pgmc g++-4.8'
 
 script:
   - stack build --no-terminal

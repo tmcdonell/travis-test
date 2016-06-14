@@ -131,6 +131,8 @@ install:
   - llc --version; true
   - nvcc --version; true
 
+  - CC=gcc-4.8 CXX=g++-4.8 stack install llvm-general
+
 script:
   - stack build --no-terminal
   - stack exec travis-test

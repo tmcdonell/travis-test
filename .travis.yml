@@ -30,6 +30,12 @@ env:
   - FOO="foo"
   - BAR="bar"
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - compiler: GHC-7.8.4
+      env: BAR="bar"
+
 # matrix:
 #   include:
 #     - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2

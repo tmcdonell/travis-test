@@ -9,11 +9,32 @@ cache:
     - $HOME/.stack
     - $HOME/llvm
 
-matrix:
-  include:
-    - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2
-      compiler: "GHC 7.10"
-      addons: { apt: { sources: [ hvr-ghc, ubuntu-toolchain-r-test ], packages: [ nvidia-cuda-toolkit, g++-4.8, libgmp-dev, cabal-install-1.22, happy-1.19.5, alex-3.1.7 ] }}
+addons:
+  apt:
+    sources:
+      - hvr-ghc
+      - ubuntu-toolchain-r-test
+    packages:
+      - nvidia-cuda-toolkit
+      - g++-4.8
+      - libgmp-dev
+      - cabal-install-1.24
+      - happy-1.19.5
+      - alex-3.1.7
+
+compiler:
+  - "GHC 7.8.4"
+  - "GHC 7.10.3"
+
+env:
+  - FOO="foo"
+  - BAR="bar"
+
+# matrix:
+#   include:
+#     - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2
+#       compiler: "GHC 7.10"
+#       addons: { apt: { sources: [ hvr-ghc, ubuntu-toolchain-r-test ], packages: [ nvidia-cuda-toolkit, g++-4.8, libgmp-dev, cabal-install-1.22, happy-1.19.5, alex-3.1.7 ] }}
 
 #     - env: GHC=7.10.3 LLVM=3.5.2
 #       addons:
@@ -75,10 +96,20 @@ before_install:
   # - unset CC
   - export PATH=/opt/alex/3.1.4/bin:${PATH}
   - export PATH=/opt/happy/1.19.5/bin:${PATH}
-  - export PATH=/opt/cabal/${CABAL}/bin:${PATH}
+  - export PATH=/opt/cabal/1.24/bin:${PATH}
   # - export PATH=/opt/ghc/${GHC}/bin:${PATH}
   # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
   # - export PATH=/usr/local/cuda/bin:${PATH}
+
+  - echo $CC
+  - export GHC=${CC:4}
+  - |
+      case ${GHC} of
+        7.8.*)  export LLVM="3.4.2" ;;
+        7.10.*) export LLVM="3.5.2" ;;
+      esac
+  - echo ${GHC}
+  - echo ${LLVM}
 
   # Fetch stack
   - mkdir $HOME/bin
@@ -112,7 +143,7 @@ before_install:
   # - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
   # - mkdir -p ${LLVM_HOME}
   # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
-  - source .travis/install-llvm-trusty.sh
+  # - source .travis/install-llvm-trusty.sh
 
 install:
   - which -a gcc; true
@@ -143,8 +174,8 @@ install:
   # - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
   # - update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
 
-  - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
-  - stack install llvm-general --no-terminal
+  # - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
+  # - stack install llvm-general --no-terminal
 
 script:
   - stack build --no-terminal

@@ -34,7 +34,9 @@ matrix:
   fast_finish: true
   allow_failures:
     - compiler: GHC-7.8.4
-      env: BAR="bar"
+      env:
+        - FOO="foo"
+        - BAR="bar"
 
 # matrix:
 #   include:

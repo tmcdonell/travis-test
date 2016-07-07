@@ -8,6 +8,7 @@ cache:
   directories:
     - $HOME/.stack
     - $HOME/llvm
+    - .stack-work
 
 addons:
   apt:

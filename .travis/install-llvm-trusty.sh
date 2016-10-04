@@ -66,7 +66,7 @@ echo "Attempting to update GHC settings file"
 # apt). This is a bit of a hack, but is required for llvm-general (>= 3.5.*).
 #
 if [ $(which gcc-4.8) ] && [ -e stack.yaml ]; then
-  STACK_PATH=$(stack path --ghc-paths 2>/dev/null)
+  STACK_PATH=$(stack path --programs 2>/dev/null | tail -n 1)
   GHC_SETTINGS=${STACK_PATH}/ghc-${GHC}/lib/ghc-${GHC}/settings
 
   echo "GHC          = ${GHC}"

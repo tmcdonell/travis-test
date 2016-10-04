@@ -24,18 +24,18 @@ addons:
       - alex-3.1.7
 
 compiler:
-  - GHC-7.8.4
+  # - GHC-7.8.4
   - GHC-7.10.3
 
-env:
-  - FOO="foo"
-  - BAR="bar"
+# env:
+#   - FOO="foo"
+#   - BAR="bar"
 
-matrix:
-  fast_finish: true
-  allow_failures:
-    - compiler: GHC-7.8.4
-      env: BAR="bar"
+# matrix:
+#   fast_finish: true
+#   allow_failures:
+#     - compiler: GHC-7.8.4
+#       env: BAR="bar"
 
 # matrix:
 #   include:
@@ -150,7 +150,7 @@ before_install:
   # - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
   # - mkdir -p ${LLVM_HOME}
   # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
-  # - source .travis/install-llvm-trusty.sh
+  - source .travis/install-llvm-trusty.sh
 
 install:
   - which -a gcc; true
@@ -184,7 +184,9 @@ install:
   # - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
   # - stack install llvm-general --no-terminal
 
+  - travis_retry stack build --no-terminal --only-dependencies
+
 script:
-  - stack build --no-terminal
+  - travis_retry stack build --no-terminal
   - stack exec travis-test
 

@@ -20,7 +20,7 @@ if [ -x ${LLVM_HOME}/bin/llc ] &&  [ -x ${LLVM_HOME}/bin/opt ] && [ ${LLVM_BINAR
 fi
 
 # Download and install. By default choose the source release. This takes longer
-# to insall the first time, but we will probably need the shared library it
+# to install the first time, but we will probably need the shared library it
 # provides.
 #
 if [ ${LLVM_BINARY_RELEASE:-0} -ne 0 ]; then
@@ -37,23 +37,42 @@ else
 
   echo "Installing LLVM from source release"
 
-  TMPDIR=$(mktemp -d)
+  SRCDIR=$(mktemp -d)
+  BUILDDIR=$(mktemp -d)
 
   # Download source distribution
   case ${LLVM} in
-    3.4.*) travis_retry curl -L "http://llvm.org/releases/${LLVM}/llvm-${LLVM}.src.tar.gz" | gunzip | tar -x -C ${TMPDIR} --strip-components 1 ;;
-    *)     travis_retry curl -L "http://llvm.org/releases/${LLVM}/llvm-${LLVM}.src.tar.xz" | unxz   | tar -x -C ${TMPDIR} --strip-components 1 ;;
+    3.4.*) travis_retry curl -L "http://llvm.org/releases/${LLVM}/llvm-${LLVM}.src.tar.gz" | gunzip | tar -x -C ${SRCDIR} --strip-components 1 ;;
+    *)     travis_retry curl -L "http://llvm.org/releases/${LLVM}/llvm-${LLVM}.src.tar.xz" | unxz   | tar -x -C ${SRCDIR} --strip-components 1 ;;
   esac
 
   # Configure, build, install
-  pushd ${TMPDIR}
-  ./configure --prefix=${LLVM_HOME} --enable-shared --enable-targets=host,x86,x86_64,nvptx
+  pushd ${BUILDDIR}
+  ${SRCDIR}/configure --prefix=${LLVM_HOME} --enable-shared --enable-targets=host,x86,x86_64,nvptx
   make -j3
   make install
   popd
 
-  # Delete the temporary build directory
-  rm -rf ${TMPDIR}
+  # Delete the temporary directories
+  rm -rf ${SRCDIR}
+  rm -rf ${BUILDDIR}
 
+fi
+
+echo "Installed LLVM"
+echo "Attempting to update GHC settings file"
+
+# Hint at GHC that a newer/modern version of g++ is available (installed via
+# apt). This is a bit of a hack, but is required for llvm-general (>= 3.5.*).
+#
+if [ $(which gcc-4.8) ] && [ -e stack.yaml ]; then
+  STACK_PATH=$(stack path --ghc-paths 2>/dev/null)
+  GHC_SETTINGS=${STACK_PATH}/ghc-${GHC}/lib/ghc-${GHC}/settings
+
+  echo "GHC          = ${GHC}"
+  echo "STACK_PATH   = ${STACK_PATH}"
+  echo "GHC_SETTINGS = ${GHC_SETTINGS}"
+
+  sed -i'' -e 's,/usr/bin/gcc.*",/usr/bin/gcc-4.8",' "${GHC_SETTINGS}"
 fi
 

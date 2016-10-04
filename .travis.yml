@@ -117,6 +117,7 @@ before_install:
       esac
   - echo ${GHC}
   - echo ${LLVM}
+  - unset CC
 
   # Fetch stack
   - mkdir $HOME/bin

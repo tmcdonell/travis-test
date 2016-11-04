@@ -1,0 +1,49 @@
+# For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
+
+resolver: lts-7.7
+
+# Local packages, usually specified by relative directory name
+packages:
+- '.'
+- location:
+    git:    https://github.com/tmcdonell/cuda.git
+    commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
+  extra-dep: true
+
+- location:
+    git:    https://github.com/bscarlet/llvm-general.git
+    commit: ec1ad5bd2112e7f64dbb43441b5e2075cf6ad8e7  # 3.9
+    # commit: 529f9bf117b5ffd1ccf7ebeb679a97b3b1c67938  # 3.8
+  extra-dep: true
+  subdirs:
+    - 'llvm-general'
+    - 'llvm-general-pure'
+
+# Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
+extra-deps: []
+# - 'llvm-general-3.5.1.2'
+# - 'llvm-general-pure-3.5.1.0'
+
+# Override default flag values for local packages and extra-deps
+flags:
+  llvm-general:
+    shared-llvm: true
+
+# Extra package databases containing global packages
+extra-package-dbs: []
+
+# Control whether we use the GHC we find on the path
+# system-ghc: true
+
+# Require a specific version of stack, using version ranges
+# require-stack-version: -any # Default
+# require-stack-version: >= 0.1.4.0
+
+# Override the architecture used by stack, especially useful on Windows
+# arch: i386
+# arch: x86_64
+
+# Extra directories used by stack for building
+# extra-include-dirs: [/path/to/dir]
+# extra-lib-dirs: [/path/to/dir]
+# vim: nospell

@@ -25,7 +25,8 @@ addons:
 
 compiler:
   # - GHC-7.8.4
-  - GHC-7.10.3
+  # - GHC-7.10.3
+  - GHC-8.0.1
 
 # env:
 #   - FOO="foo"
@@ -114,6 +115,7 @@ before_install:
       case ${GHC} in
         7.8.*)  export LLVM="3.4.2" ;;
         7.10.*) export LLVM="3.5.2" ;;
+        8.0.*)  export LLVM="3.9.0" ;;
       esac
   - echo ${GHC}
   - echo ${LLVM}

@@ -58,7 +58,7 @@ else
       ;;
 
     *)
-      cmake -DCMAKE_INSTALL_PREFIX=${LLVM_HOME} -DLLVM_BUILD_LLVM_DYLIB=True -DLLVM_TARGETS_TO_BUILD="X86;NVPTX" ${SCRDIR}
+      cmake -DCMAKE_INSTALL_PREFIX=${LLVM_HOME} -DLLVM_BUILD_LLVM_DYLIB=True -DLLVM_TARGETS_TO_BUILD="X86;NVPTX" ${SRCDIR}
       cmake --build . -- -j3
       cmake --build . --target install
       ;;

@@ -71,20 +71,17 @@ else
 
 fi
 
-echo "Installed LLVM"
-echo "Attempting to update GHC settings file"
-
 # Hint at GHC that a newer/modern version of g++ is available (installed via
 # apt). This is a bit of a hack, but is required for llvm-general (>= 3.5.*).
 #
-if [ $(which gcc-4.8) ] && [ -e stack.yaml ]; then
-  STACK_PATH=$(stack path --programs 2>/dev/null | tail -n 1)
-  GHC_SETTINGS=${STACK_PATH}/ghc-${GHC}/lib/ghc-${GHC}/settings
-
-  echo "GHC          = ${GHC}"
-  echo "STACK_PATH   = ${STACK_PATH}"
-  echo "GHC_SETTINGS = ${GHC_SETTINGS}"
-
-  sed -i'' -e 's,/usr/bin/gcc.*",/usr/bin/gcc-4.8",' "${GHC_SETTINGS}"
-fi
+# if [ $(which gcc-4.8) ] && [ -e stack.yaml ]; then
+#   STACK_PATH=$(stack path --programs 2>/dev/null | tail -n 1)
+#   GHC_SETTINGS=${STACK_PATH}/ghc-${GHC}/lib/ghc-${GHC}/settings
+#
+#   echo "GHC          = ${GHC}"
+#   echo "STACK_PATH   = ${STACK_PATH}"
+#   echo "GHC_SETTINGS = ${GHC_SETTINGS}"
+#
+#   sed -i'' -e 's,/usr/bin/gcc.*",/usr/bin/gcc-4.8",' "${GHC_SETTINGS}"
+# fi
 

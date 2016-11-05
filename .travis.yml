@@ -156,6 +156,7 @@ before_install:
   # - mkdir -p ${LLVM_HOME}
   # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
   # - source .travis/install-llvm-trusty.sh
+  - source .travis/update-ghc-settings.sh
 
 install:
   - which -a gcc; true

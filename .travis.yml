@@ -12,7 +12,7 @@ cache:
 
 addons:
   apt:
-    sources:
+    sources: &sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
       - llvm-toolchain-precise

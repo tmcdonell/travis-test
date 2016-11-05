@@ -15,6 +15,7 @@ addons:
     sources:
       - hvr-ghc
       - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.9
     packages:
       - nvidia-cuda-toolkit
       - g++-4.8
@@ -22,6 +23,7 @@ addons:
       - cabal-install-1.24
       - happy-1.19.5
       - alex-3.1.7
+      - llvm-3.9
 
 compiler:
   # - GHC-7.8.4
@@ -153,7 +155,7 @@ before_install:
   # - export LD_LIBRARY_PATH=${LLVM_HOME}/lib:${LD_LIBRARY_PATH}
   # - mkdir -p ${LLVM_HOME}
   # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
-  - source .travis/install-llvm-trusty.sh
+  # - source .travis/install-llvm-trusty.sh
 
 install:
   - which -a gcc; true

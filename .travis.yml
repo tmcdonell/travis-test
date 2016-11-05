@@ -16,6 +16,8 @@ addons:
       - hvr-ghc
       - ubuntu-toolchain-r-test
       - llvm-toolchain-precise
+      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.9 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
     packages:
       - nvidia-cuda-toolkit
       - g++-4.8

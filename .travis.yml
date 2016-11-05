@@ -15,7 +15,7 @@ addons:
     sources:
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-precise-3.9
+      - llvm-toolchain-precise
     packages:
       - nvidia-cuda-toolkit
       - g++-4.8

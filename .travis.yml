@@ -1,6 +1,6 @@
 # vim: nospell
 language: c
-sudo: false
+sudo: required
 dist: precise
 # dist: precise
 

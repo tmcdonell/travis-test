@@ -15,7 +15,8 @@ addons:
     sources:
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-3.8
+      # - llvm-toolchain-trusty-3.8
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.8 main'
     packages:
       - nvidia-cuda-toolkit
       - g++-4.8

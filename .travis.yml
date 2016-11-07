@@ -1,7 +1,7 @@
 # vim: nospell
 language: c
-sudo: required
-dist: trusty
+sudo: false
+dist: precise
 # dist: precise
 
 cache:
@@ -16,7 +16,7 @@ addons:
       - hvr-ghc
       - ubuntu-toolchain-r-test
       # - llvm-toolchain-trusty-3.8
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.8 main'
+      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.8 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
     packages:
       - nvidia-cuda-toolkit

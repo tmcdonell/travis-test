@@ -12,27 +12,53 @@ cache:
 
 addons:
   apt:
-    sources:
+    sources: &apt_sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      # - llvm-toolchain-trusty-3.8
-      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.8 main'
+      - llvm-toolchain-precise
+      - llvm-toolchain-precise-3.5
+      - llvm-toolchain-precise-3.6
+      - llvm-toolchain-precise-3.7
+      - llvm-toolchain-precise-3.8
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-    packages:
+
+    packages: &apt_packages
       - nvidia-cuda-toolkit
       - g++-4.8
       - libgmp-dev
       - cabal-install-1.22
       - happy-1.19.5
       - alex-3.1.7
-      - llvm-3.8-dev
       - libsiloh5-0
       - libhdf5-openmpi-dev
 
-compiler:
+matrix:
+  include:
+    - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2
+      compiler: "GHC 7.10"
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - *apt_packages
+            - cabal-install-1.22
+            - llvm-3.5-dev
+
+    - env: GHC=8.0.1 CABAL=1.24 LLVM=3.8.1
+      compiler: "GHC 8.0"
+      addons:
+        apt:
+          sources: *apt_sources
+          packages:
+            - *apt_packages
+            - cabal-install-1.24
+            - llvm-3.8-dev
+
+# compiler:
   # - GHC-7.8.4
   # - GHC-7.10.3
-  - GHC-8.0.1
+  # - GHC-8.0.1
 
 # env:
 #   - FOO="foo"
@@ -110,19 +136,19 @@ before_install:
   # - unset CC
   - export PATH=/opt/alex/3.1.4/bin:${PATH}
   - export PATH=/opt/happy/1.19.5/bin:${PATH}
-  - export PATH=/opt/cabal/1.24/bin:${PATH}
+  - export PATH=/opt/cabal/${CABAL}/bin:${PATH}
   # - export PATH=/opt/ghc/${GHC}/bin:${PATH}
   # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
   # - export PATH=/usr/local/cuda/bin:${PATH}
 
   - echo $CC
   - export GHC=${CC:4}
-  - |
-      case ${GHC} in
-        7.8.*)  export LLVM="3.4.2" ;;
-        7.10.*) export LLVM="3.5.2" ;;
-        8.0.*)  export LLVM="3.8.1" ;;
-      esac
+  # - |
+  #     case ${GHC} in
+  #       7.8.*)  export LLVM="3.4.2" ;;
+  #       7.10.*) export LLVM="3.5.2" ;;
+  #       8.0.*)  export LLVM="3.8.1" ;;
+  #     esac
   - echo ${GHC}
   - echo ${LLVM}
   - unset CC

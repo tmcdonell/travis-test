@@ -1,6 +1,6 @@
 # vim: nospell
 language: c
-sudo: required
+sudo: false
 # dist: trusty
 dist: precise
 
@@ -39,7 +39,6 @@ matrix:
       compiler: "GHC 7.10"
       addons:
         apt:
-          sources: *apt_sources
           packages:
             - *apt_packages
             - cabal-install-1.22
@@ -49,7 +48,6 @@ matrix:
       compiler: "GHC 8.0"
       addons:
         apt:
-          sources: *apt_sources
           packages:
             - *apt_packages
             - cabal-install-1.24

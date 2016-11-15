@@ -1,6 +1,6 @@
 # vim: nospell
 language: c
-sudo: false
+sudo: required
 # dist: trusty
 dist: precise
 
@@ -30,6 +30,8 @@ addons:
       - cabal-install-1.22
       - happy-1.19.5
       - alex-3.1.7
+      - libsiloh5-0
+      - libhdf5-openmpi-dev
 
 matrix:
   include:
@@ -139,8 +141,8 @@ before_install:
   # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
   # - export PATH=/usr/local/cuda/bin:${PATH}
 
-  - echo $CC
-  - export GHC=${CC:4}
+  # - echo $CC
+  # - export GHC=${CC:4}
   # - |
   #     case ${GHC} in
   #       7.8.*)  export LLVM="3.4.2" ;;

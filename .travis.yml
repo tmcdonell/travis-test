@@ -27,7 +27,7 @@ addons:
       - nvidia-cuda-toolkit
       - g++-4.8
       - libgmp-dev
-      - cabal-install-1.22
+      - libedit-dev
       - happy-1.19.5
       - alex-3.1.7
       - libsiloh5-0

@@ -30,8 +30,6 @@ addons:
       - cabal-install-1.22
       - happy-1.19.5
       - alex-3.1.7
-      - libsiloh5-0
-      - libhdf5-openmpi-dev
 
 matrix:
   include:
@@ -39,6 +37,7 @@ matrix:
       compiler: "GHC 7.10"
       addons:
         apt:
+          sources: *apt_sources
           packages:
             - *apt_packages
             - cabal-install-1.22
@@ -48,6 +47,7 @@ matrix:
       compiler: "GHC 8.0"
       addons:
         apt:
+          sources: *apt_sources
           packages:
             - *apt_packages
             - cabal-install-1.24

@@ -20,6 +20,7 @@ addons:
       - llvm-toolchain-precise-3.6
       - llvm-toolchain-precise-3.7
       - llvm-toolchain-precise-3.8
+      - llvm-toolchain-precise-3.9
       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
@@ -45,7 +46,7 @@ matrix:
             - llvm-3.5-dev
             - libedit-dev
 
-    - env: GHC=8.0.1 CABAL=1.24 LLVM=3.8.1
+    - env: GHC=8.0.2 CABAL=1.24 LLVM=3.9.1
       compiler: "GHC 8.0"
       addons:
         apt:
@@ -53,12 +54,12 @@ matrix:
           packages:
             - *apt_packages
             - cabal-install-1.24
-            - llvm-3.8-dev
+            - llvm-3.9-dev
 
 # compiler:
   # - GHC-7.8.4
   # - GHC-7.10.3
-  # - GHC-8.0.1
+  # - GHC-8.0.2
 
 # env:
 #   - FOO="foo"

@@ -14,7 +14,7 @@ packages:
     git:    https://github.com/tmcdonell/llvm-general.git
     # commit: 8971e275fe56dfd0090ac777e38e6dd641a0306a # 3.5
     # commit: f80beba704a6b168326d442197b43e71a1ab730d # 3.8
-    commit: 105c0ff3bd327ba1506cb5c30992a2083bdb5c13 # 3.9
+    commit: 69863022efd2691e8198da0c24b7e49b8d5ebd4c # 3.9
   extra-dep: true
   subdirs:
     - 'llvm-general'

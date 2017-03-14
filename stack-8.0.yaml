@@ -5,29 +5,38 @@ resolver: lts-8.0
 # Local packages, usually specified by relative directory name
 packages:
 - '.'
-- location:
-    git:    https://github.com/tmcdonell/cuda.git
-    commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
-  extra-dep: true
+# - location:
+#     git:    https://github.com/tmcdonell/cuda.git
+#     commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
+#   extra-dep: true
 
 - location:
-    git:    https://github.com/tmcdonell/llvm-general.git
-    # commit: 8971e275fe56dfd0090ac777e38e6dd641a0306a # 3.5
-    # commit: f80beba704a6b168326d442197b43e71a1ab730d # 3.8
-    commit: 69863022efd2691e8198da0c24b7e49b8d5ebd4c # 3.9
+    git:    https://github.com/llvm-hs/llvm-hs.git
+    commit: 7d222add19129fc063b3d2d0fd190e98dc8153f9
   extra-dep: true
   subdirs:
-    - 'llvm-general'
-    - 'llvm-general-pure'
+    - 'llvm-hs'
+    - 'llvm-hs-pure'
+
+# - location:
+#     git:    https://github.com/tmcdonell/llvm-general.git
+#     # commit: 8971e275fe56dfd0090ac777e38e6dd641a0306a # 3.5
+#     # commit: f80beba704a6b168326d442197b43e71a1ab730d # 3.8
+#     commit: 69863022efd2691e8198da0c24b7e49b8d5ebd4c # 3.9
+#   extra-dep: true
+#   subdirs:
+#     - 'llvm-general'
+#     - 'llvm-general-pure'
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
-extra-deps: []
+extra-deps:
+- 'cuda-0.7.5.2'
 # - 'llvm-general-3.5.1.2'
 # - 'llvm-general-pure-3.5.1.0'
 
 # Override default flag values for local packages and extra-deps
 flags:
-  llvm-general:
+  llvm-hs:
     shared-llvm: true
 
 # Extra package databases containing global packages

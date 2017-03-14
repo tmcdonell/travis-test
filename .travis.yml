@@ -21,9 +21,11 @@ addons:
       - llvm-toolchain-precise-3.7
       - llvm-toolchain-precise-3.8
       - llvm-toolchain-precise-3.9
-      - llvm-toolchain-precise-4.0
       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      # - llvm-toolchain-precise-4.0
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages
       - nvidia-cuda-toolkit

@@ -18,6 +18,7 @@ extra-deps:
 - 'llvm-general-pure-3.5.1.0'
 - 'mtl-2.2.1'
 - 'transformers-0.4.3.0'
+- 'Cabal-1.24.2.0'
 
 # Override default flag values for local packages and extra-deps
 flags:

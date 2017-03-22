@@ -49,25 +49,25 @@ matrix:
             - llvm-3.5-dev
             - libedit-dev
 
-    - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
-      compiler: "GHC 7.10"
-      addons:
-        apt:
-          sources: *apt_sources
-          packages:
-            - *apt_packages
-            - cabal-install-1.22
-            - llvm-4.0-dev
+    # - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
+    #   compiler: "GHC 7.10"
+    #   addons:
+    #     apt:
+    #       sources: *apt_sources
+    #       packages:
+    #         - *apt_packages
+    #         - cabal-install-1.22
+    #         - llvm-4.0-dev
 
-    - env: GHC=8.0.2 CABAL=1.24 LLVM=4.0.0
-      compiler: "GHC 8.0"
-      addons:
-        apt:
-          sources: *apt_sources
-          packages:
-            - *apt_packages
-            - cabal-install-1.24
-            - llvm-4.0-dev
+    # - env: GHC=8.0.2 CABAL=1.24 LLVM=4.0.0
+    #   compiler: "GHC 8.0"
+    #   addons:
+    #     apt:
+    #       sources: *apt_sources
+    #       packages:
+    #         - *apt_packages
+    #         - cabal-install-1.24
+    #         - llvm-4.0-dev
 
 # compiler:
   # - GHC-7.8.4
@@ -174,6 +174,7 @@ before_install:
   - mv stack-*/stack $HOME/bin
   - ln -s stack-${GHC%.*}.yaml stack.yaml
   - travis_retry stack setup --no-terminal
+  - travis_retry stack setup --upgrade-cabal
 
   # - |
   #     if [ ${GHC%.*} == 7.8 ]; then

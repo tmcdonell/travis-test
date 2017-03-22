@@ -6,13 +6,14 @@ resolver: lts-2.22
 # Local packages, usually specified by relative directory name
 packages:
 - '.'
-- location:
-    git:    https://github.com/tmcdonell/cuda.git
-    commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
-  extra-dep: true
+# - location:
+#     git:    https://github.com/tmcdonell/cuda.git
+#     commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
+#   extra-dep: true
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
+- 'cuda-0.7.5.2'
 - 'llvm-general-3.5.1.2'
 - 'llvm-general-pure-3.5.1.0'
 - 'mtl-2.2.1'

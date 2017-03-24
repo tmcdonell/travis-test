@@ -1,5 +1,6 @@
 # vim: nospell
-language: c
+# language: c
+language: generic
 # sudo: required
 # dist: trusty
 dist: precise
@@ -24,7 +25,7 @@ addons:
       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
       # - llvm-toolchain-precise-4.0
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
+      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages

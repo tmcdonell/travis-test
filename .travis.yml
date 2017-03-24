@@ -24,9 +24,9 @@ addons:
       - llvm-toolchain-precise-3.9
       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-      # - llvm-toolchain-precise-4.0
-      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
-        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      - llvm-toolchain-precise-4.0
+      # - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
+      #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages
       - nvidia-cuda-toolkit
@@ -36,6 +36,7 @@ addons:
       - alex-3.1.7
       - libsiloh5-0
       - libhdf5-openmpi-dev
+      - llvm-4.0-dev
 
 matrix:
   include:

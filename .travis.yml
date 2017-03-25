@@ -1,11 +1,15 @@
 # vim: nospell
-# language: c
+# # language: c
+# language: generic
+# # sudo: required
+# # dist: trusty
+# dist: precise
+
 language: generic
-# sudo: required
-# dist: trusty
 dist: precise
 
 cache:
+  timeout: 600
   directories:
     - $HOME/.stack
     - $HOME/llvm
@@ -17,39 +21,86 @@ addons:
       - hvr-ghc
       - ubuntu-toolchain-r-test
       - llvm-toolchain-precise
-      - llvm-toolchain-precise-3.5
-      - llvm-toolchain-precise-3.6
-      - llvm-toolchain-precise-3.7
-      - llvm-toolchain-precise-3.8
-      - llvm-toolchain-precise-3.9
-      # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-      #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-      - llvm-toolchain-precise-4.0
-      # - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
-      #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      # - llvm-toolchain-precise-3.5
+      # - llvm-toolchain-precise-3.6
+      # - llvm-toolchain-precise-3.7
+      # - llvm-toolchain-precise-3.8
+      # - llvm-toolchain-precise-3.9
+      - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages
-      - nvidia-cuda-toolkit
-      - g++-4.8
-      - libgmp-dev
-      - happy-1.19.5
       - alex-3.1.7
-      - libsiloh5-0
-      - libhdf5-openmpi-dev
+      - freeglut3-dev
+      - g++-4.8
+      - happy-1.19.5
+      - libfftw3-dev
+      - libgmp-dev
       - llvm-4.0-dev
+      - nvidia-cuda-toolkit
 
 matrix:
   include:
-    - env: GHC=7.8.4 CABAL=1.18 LLVM-3.5.2
+    - env: GHC=7.8.4 CABAL=1.18 LLVM=4.0.0
       compiler: "GHC 7.8"
-      addons:
-        apt:
-          sources: *apt_sources
-          packages:
-            - *apt_packages
-            - cabal-install-1.18
-            - llvm-3.5-dev
-            - libedit-dev
+      addons: { apt: { sources: [ *apt_sources ], packages: [ *apt_packages, cabal-install-1.18 ] }}
+
+    - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
+      compiler: "GHC 7.10"
+      addons: { apt: { sources: [ *apt_sources ], packages: [ *apt_packages, cabal-install-1.22 ] }}
+
+    - env: GHC=8.0.2 CABAL=1.24 LLVM=4.0.0
+      compiler: "GHC 8.0"
+      addons: { apt: { sources: [ *apt_sources ], packages: [ *apt_packages, cabal-install-1.24 ] }}
+
+  fast_finish: true
+
+
+# cache:
+#   directories:
+#     - $HOME/.stack
+#     - $HOME/llvm
+#     - .stack-work/install
+
+# addons:
+#   apt:
+#     sources: &apt_sources
+#       - hvr-ghc
+#       - ubuntu-toolchain-r-test
+#       - llvm-toolchain-precise
+#       - llvm-toolchain-precise-3.5
+#       - llvm-toolchain-precise-3.6
+#       - llvm-toolchain-precise-3.7
+#       - llvm-toolchain-precise-3.8
+#       - llvm-toolchain-precise-3.9
+#       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+#       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+#       # - llvm-toolchain-precise-4.0
+#       - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
+#         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+
+#     packages: &apt_packages
+#       - nvidia-cuda-toolkit
+#       - g++-4.8
+#       - libgmp-dev
+#       - happy-1.19.5
+#       - alex-3.1.7
+#       - libsiloh5-0
+#       - libhdf5-openmpi-dev
+#       - llvm-4.0-dev
+
+# matrix:
+#   include:
+#     - env: GHC=7.8.4 CABAL=1.18 LLVM-3.5.2
+#       compiler: "GHC 7.8"
+#       addons:
+#         apt:
+#           sources: *apt_sources
+#           packages:
+#             - *apt_packages
+#             - cabal-install-1.18
+#             - llvm-3.5-dev
+#             - libedit-dev
 
     # - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
     #   compiler: "GHC 7.10"

@@ -17,13 +17,12 @@ cache:
 
 addons:
   apt:
-    sources:
+    sources: &apt_sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
       - llvm-toolchain-precise
       - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-
 
     packages: &apt_packages
       - alex-3.1.7

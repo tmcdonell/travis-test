@@ -10,13 +10,13 @@ packages:
 #     commit: 28ee2bd8ef94eb0e6231373ee2b5e0c9187bf5c7
 #   extra-dep: true
 
-- location:
-    git:    https://github.com/llvm-hs/llvm-hs.git
-    commit: 7d222add19129fc063b3d2d0fd190e98dc8153f9
-  extra-dep: true
-  subdirs:
-    - 'llvm-hs'
-    - 'llvm-hs-pure'
+# - location:
+#     git:    https://github.com/llvm-hs/llvm-hs.git
+#     commit: 7d222add19129fc063b3d2d0fd190e98dc8153f9
+#   extra-dep: true
+#   subdirs:
+#     - 'llvm-hs'
+#     - 'llvm-hs-pure'
 
 # - location:
 #     git:    https://github.com/tmcdonell/llvm-general.git
@@ -31,6 +31,8 @@ packages:
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
 - 'cuda-0.7.5.2'
+- 'llvm-hs-4.0.0.0'
+- 'llvm-hs-pure-4.0.0.0'
 # - 'llvm-general-3.5.1.2'
 # - 'llvm-general-pure-3.5.1.0'
 

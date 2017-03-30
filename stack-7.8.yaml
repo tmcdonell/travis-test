@@ -13,12 +13,14 @@ packages:
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
+- 'Cabal-1.24.2.0'
 - 'cuda-0.7.5.2'
-- 'llvm-general-3.5.1.2'
-- 'llvm-general-pure-3.5.1.0'
+# - 'llvm-general-3.5.1.2'
+# - 'llvm-general-pure-3.5.1.0'
+- 'llvm-hs-4.0.0.0'
+- 'llvm-hs-pure-4.0.0.0'
 - 'mtl-2.2.1'
 - 'transformers-0.4.3.0'
-- 'Cabal-1.24.2.0'
 
 # Override default flag values for local packages and extra-deps
 flags:
@@ -42,3 +44,5 @@ extra-package-dbs: []
 # Extra directories used by stack for building
 # extra-include-dirs: [/path/to/dir]
 # extra-lib-dirs: [/path/to/dir]
+
+# vim: nospell

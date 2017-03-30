@@ -31,6 +31,10 @@ extra-deps:
 flags:
   llvm-hs:
     shared-llvm: true
+    semigroups: true
+  llvm-hs-pure:
+    semigroups: true
+
 
 # Extra package databases containing global packages
 extra-package-dbs: []

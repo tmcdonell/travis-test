@@ -21,11 +21,16 @@ extra-deps:
 - 'llvm-hs-pure-4.0.0.0'
 - 'mtl-2.2.1'
 - 'transformers-0.4.3.0'
+- 'semigroups-0.18.1'
+- 'transformers-compat-0.4.0.4'
 
 # Override default flag values for local packages and extra-deps
 flags:
-  llvm-general:
+  llvm-hs:
     shared-llvm: true
+    semigroups: true
+  llvm-hs-pure:
+    semigroups: true
 
 # Extra package databases containing global packages
 extra-package-dbs: []

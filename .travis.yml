@@ -27,7 +27,7 @@ addons:
     packages: &apt_packages
       - nvidia-cuda-toolkit
       - freeglut3-dev
-      - g++-5
+      - g++-4.8
       - libgmp-dev
       - happy-1.19.5
       - alex-3.1.7

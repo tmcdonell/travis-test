@@ -64,7 +64,7 @@ matrix:
     #         - *apt_packages
     #         - cabal-install-1.24
 
-    - env: GHC=8.2.0 CABAL=1.24 LLVM=4.0.0
+    - env: GHC=8.2.0 CABAL=1.24 LLVM=4.0.0 CUDA=8.0.61-1
       compiler: "GHC 8.2"
       addons:
         apt:
@@ -265,7 +265,8 @@ before_install:
   # - ls -la $HOME/.stack/indices/*/*
 
   # Install CUDA
-  # - source .travis/install-cuda-trusty.sh
+  - source .travis/install-cuda-trusty.sh
+  - ls -l /usr/local/cuda/lib
 
   # Try to install LLVM manually
   # - export LLVM_HOME=${HOME}/llvm-${LLVM}

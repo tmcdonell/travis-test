@@ -7,6 +7,7 @@
 
 language: generic
 dist: trusty
+sudo: required
 # dist: precise
 
 cache:

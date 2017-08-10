@@ -15,7 +15,8 @@ executable travis-test
   build-depends:
       base >= 4.7
     -- , llvm-hs
-    -- , cuda
+    , cuda
+    , cusparse
     -- , llvm-general
     -- , lens
 

@@ -278,6 +278,8 @@ before_install:
   # - source .travis/install-llvm-trusty.sh
   - source .travis/update-ghc-settings.sh
 
+  - travis_retry stack install c2hs
+
 install:
   - which -a gcc; true
   - which -a g++; true

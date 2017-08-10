@@ -267,7 +267,7 @@ before_install:
 
   # Install CUDA
   - source .travis/install-cuda-trusty.sh
-  - ls -l /usr/local/cuda/lib
+  # - ls -l /usr/local/cuda/lib
 
   # Try to install LLVM manually
   # - export LLVM_HOME=${HOME}/llvm-${LLVM}

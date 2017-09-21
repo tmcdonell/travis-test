@@ -25,6 +25,8 @@ addons:
       - llvm-toolchain-precise
       - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages
       # - nvidia-cuda-toolkit
@@ -35,6 +37,7 @@ addons:
       - alex-3.1.7
       # - libfftw3-dev
       # - llvm-4.0-dev
+      - llvm-5.0-dev
 
 matrix:
   include:
@@ -65,14 +68,14 @@ matrix:
     #         - *apt_packages
     #         - cabal-install-1.24
 
-    - env: GHC=8.2.1 CABAL=1.24 LLVM=4.0.0 CUDA=8.0.61-1
+    - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=8.0.61-1
       compiler: "GHC 8.2"
       addons:
         apt:
           sources: *apt_sources
           packages:
             - *apt_packages
-            - cabal-install-1.24
+            - cabal-install-2.0
 
   fast_finish: true
 
@@ -266,7 +269,7 @@ before_install:
   # - ls -la $HOME/.stack/indices/*/*
 
   # Install CUDA
-  - source .travis/install-cuda-trusty.sh
+  # - source .travis/install-cuda-trusty.sh
   # - ls -l /usr/local/cuda/lib
 
   # Try to install LLVM manually
@@ -278,7 +281,7 @@ before_install:
   # - source .travis/install-llvm-trusty.sh
   - source .travis/update-ghc-settings.sh
 
-  - travis_retry stack install c2hs
+  # - travis_retry stack install c2hs
 
 install:
   - which -a gcc; true

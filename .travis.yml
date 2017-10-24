@@ -13,16 +13,17 @@ sudo: required
 cache:
   timeout: 600
   directories:
-    - $HOME/.stack
-    - $HOME/llvm
-    - .stack-work/install
+    - $HOME/.stack/snapshots
+    # - $HOME/.stack
+    # - $HOME/llvm
+    # - .stack-work/install
 
 addons:
   apt:
     sources: &apt_sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-precise
+      - llvm-toolchain-trusty
       - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
       - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main'
@@ -279,7 +280,7 @@ before_install:
   # - mkdir -p ${LLVM_HOME}
   # - travis_retry curl -L "http://llvm.org/releases/${LLVM}/clang+llvm-${LLVM}-x86_64-linux-gnu-ubuntu-14.04.tar.xz" | unxz | tar -x -C ${LLVM_HOME} --strip-components 1
   # - source .travis/install-llvm-trusty.sh
-  - source .travis/update-ghc-settings.sh
+  # - source .travis/update-ghc-settings.sh
 
   # - travis_retry stack install c2hs
 

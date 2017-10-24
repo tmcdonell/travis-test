@@ -19,7 +19,10 @@ executable travis-test
     -- , cusparse
     -- , llvm-general
     -- , lens
-    , llvm-hs >= 5.0.0
+    -- , llvm-hs >= 5.0.0
+    , accelerate-llvm-native
+    , accelerate-llvm-ptx
 
   -- ghc-options:          -fllvm -optlo-O3
 
+-- vim: nospell

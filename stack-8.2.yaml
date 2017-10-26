@@ -20,6 +20,16 @@ packages:
     - accelerate-llvm-native
     - accelerate-llvm-ptx
 
+- location:
+    git:    https://github.com/tmcdonell/accelerate-fft.git
+    commit: 23b3992096d0c705cf8a5e646f20d966b6458221
+  extra-dep: true
+
+- location:
+    git:    https://github.com/tmcdonell/accelerate-examples.git
+    commit: c40a56e8b29a85b0a5607553dd6bd5094de4b1ab
+  extra-dep: true
+
 extra-deps: []
 
 # Override default flag values for local packages and extra-deps

@@ -22,6 +22,7 @@ executable travis-test
     -- , llvm-hs >= 5.0.0
     , accelerate-llvm-native
     , accelerate-llvm-ptx
+    , accelerate-examples
 
   -- ghc-options:          -fllvm -optlo-O3
 

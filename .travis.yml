@@ -322,3 +322,7 @@ script:
   - travis_retry stack build --no-terminal
   - stack exec travis-test
 
+after_failure:
+  - df -h
+  - du -hs .
+

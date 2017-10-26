@@ -31,12 +31,12 @@ addons:
 
     packages: &apt_packages
       # - nvidia-cuda-toolkit
-      # - freeglut3-dev
+      - freeglut3-dev
       - g++-4.8
       - libgmp-dev
       - happy-1.19.5
       - alex-3.1.7
-      # - libfftw3-dev
+      - libfftw3-dev
       # - llvm-4.0-dev
       - llvm-5.0-dev
 

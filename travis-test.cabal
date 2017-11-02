@@ -15,14 +15,14 @@ executable travis-test
   build-depends:
       base >= 4.7
     -- , llvm-hs
-    -- , cuda
+    , cuda
     -- , cusparse
     -- , llvm-general
     -- , lens
     -- , llvm-hs >= 5.0.0
-    , accelerate-llvm-native
-    , accelerate-llvm-ptx
-    , accelerate-examples
+    -- , accelerate-llvm-native
+    -- , accelerate-llvm-ptx
+    -- , accelerate-examples
 
   -- ghc-options:          -fllvm -optlo-O3
 

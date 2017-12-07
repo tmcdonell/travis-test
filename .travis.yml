@@ -249,8 +249,9 @@ before_install:
   # Fetch stack
   - mkdir -p $HOME/bin
   - export PATH=$HOME/bin:$PATH
-  - travis_retry curl -L "https://www.stackage.org/stack/linux-x86_64" | gunzip | tar -x
-  - mv stack-*/stack $HOME/bin
+  # - travis_retry curl -L "https://www.stackage.org/stack/linux-x86_64" | gunzip | tar -x
+  # - mv stack-*/stack $HOME/bin
+  - travis_retry curl -sSL https://get.haskellstack.org/ | sh
   - ln -s stack-${GHC%.*}.yaml stack.yaml
   - travis_retry stack setup --no-terminal
   # - travis_retry stack setup --upgrade-cabal
@@ -271,7 +272,7 @@ before_install:
   # - ls -la $HOME/.stack/indices/*/*
 
   # Install CUDA
-  - source .travis/install-cuda-trusty.sh
+  # - source .travis/install-cuda-trusty.sh
   # - ls -l /usr/local/cuda/lib
 
   # Try to install LLVM manually

@@ -79,7 +79,7 @@ matrix:
           packages:
             - *apt_packages
             - cabal-install-2.0
-            - libncurses-dev
+            - libtinfo-dev
 
   fast_finish: true
 

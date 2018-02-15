@@ -39,6 +39,7 @@ addons:
       - libfftw3-dev
       # - llvm-4.0-dev
       - llvm-5.0-dev
+      - ghc-8.4.1
 
 matrix:
   include:

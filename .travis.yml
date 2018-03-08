@@ -28,18 +28,21 @@ addons:
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
       - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main'
         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
+        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
 
     packages: &apt_packages
       # - nvidia-cuda-toolkit
-      - freeglut3-dev
-      - g++-4.8
-      - libgmp-dev
+      # - freeglut3-dev
+      # - g++-4.8
+      # - libgmp-dev
       - happy-1.19.5
       - alex-3.1.7
-      - libfftw3-dev
+      # - libfftw3-dev
       # - llvm-4.0-dev
-      - llvm-5.0-dev
-      - ghc-8.4.1
+      # - llvm-5.0-dev
+      - llvm-6.0-dev
+      # - ghc-8.4.1
 
 matrix:
   include:
@@ -72,7 +75,7 @@ matrix:
 
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=8.0.61-1
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
-    - env: GHC=8.4.0 CABAL=2.0 LLVM=5.0.0 CUDA=8.0.61-1
+    - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
       compiler: "GHC 8.4"
       addons:
         apt:

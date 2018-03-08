@@ -1,97 +1,59 @@
 # For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
 # vim: nospell
 
-resolver: ghc-8.4.0.20180224 # 8.4.1-rc1
-compiler: ghc-8.4.0.20180224
+resolver: ghc-8.4.1
+compiler: ghc-8.4.1
 compiler-check: match-exact
 
 allow-newer: true
 
 setup-info:
   ghc:
-    # macosx:
-    linux64:
-      8.4.0.20180224:
-        url:    https://downloads.haskell.org/~ghc/8.4.1-rc1/ghc-8.4.0.20180224-x86_64-deb8-linux.tar.xz
-        sha256: a83b57a600b513f689716e98b53badfb2e2aa1117bff7c5bab12c07854eecb07
-    # windows32:
-    # windows64:
-    # linux32-nopie:
-    # linux64-nopie:
+    linux32-nopie:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-i386-deb8-linux.tar.xz
+        sha256: c56c589c76c7ddcb77cdbef885a811761e669d3e76868b723d5be56dedcd4f69
+    linux64-nopie:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-x86_64-deb8-linux.tar.xz
+        sha256: 427c77a934b30c3f1de992c38c072afb4323fe6fb30dbac919ca8cb6ae98fbd9
+    linux64-tinfo:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-x86_64-fedora27-linux.tar.xz
+        sha256: 89328a013e64b9b56825a9071fea5616ddd623d37fd41e8fb913dfebc609e7ea
+    linux64-tinfo-nopie:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-x86_64-fedora27-linux.tar.xz
+        sha256: 89328a013e64b9b56825a9071fea5616ddd623d37fd41e8fb913dfebc609e7ea
+    windows32:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-i386-unknown-mingw32.tar.xz
+        sha256: c543330f9c89f670682541e0ed24e5ec38c53ddffda48367c6e1364367045b0d
+    windows64:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-x86_64-unknown-mingw32.tar.xz
+        sha256: 328b013fc651d34e075019107e58bb6c8a578f0155cf3ad4557e6f2661b03131
+    macosx:
+      8.4.1:
+        url: https://downloads.haskell.org/~ghc/8.4.1/ghc-8.4.1-x86_64-apple-darwin.tar.xz
+        sha256: d774e39f3a0105843efd06709b214ee332c30203e6c5902dd6ed45e36285f9b7
 
 packages:
 - '.'
 
 extra-deps:
-- 'adjunctions-4.4'
-- 'ansi-terminal-0.8.0.1'
-- 'ansi-wl-pprint-0.6.8.2'
-- 'async-2.2.1'
-- 'base-compat-0.9.3'
-- 'base-orphans-0.6'
-- 'basement-0.0.6'
-- 'bifunctors-5.5.2'
-- 'cabal-doctest-1.0.6'
-- 'call-stack-0.1.0'
-- 'clock-0.7.2'
-- 'code-page-0.1.3'
-- 'colour-2.3.4'
-- 'comonad-5.0.3'
-- 'concurrent-output-1.10.3'
-- 'constraints-0.10'
-- 'contravariant-1.4.1'
-- 'cryptonite-0.25'
-- 'distributive-0.5.3'
-- 'doctest-0.14.0'
-- 'exceptions-0.8.3'
-- 'fail-4.9.0.0'
-- 'foundation-0.0.19'
-- 'free-5'
-- 'ghc-paths-0.1.0.9'
-- 'half-0.2.2.3'
-- 'hashable-1.2.6.1'
-# - 'hashtables-1.2.2.1'
-- git:    https://github.com/deepfire/hashtables.git
-  commit: b9eb4b10a50bd6250330422afecc065339a32412
-- 'haskell-lexer-1.0.1'
-- 'hedgehog-0.5.2'
-- 'kan-extensions-5.1'
-- 'lens-4.16'
-- 'lifted-async-0.10.0'
-- 'lifted-base-0.2.3.11'
-- 'memory-0.14.14'
-- 'mmorph-1.1.0'
-- 'monad-control-1.0.2.2'
-- 'optparse-applicative-0.14.0.0'
-- 'parallel-3.2.1.1'
-- 'pipes-4.3.7'
-- 'pretty-show-1.7'
-- 'primitive-0.6.3.0'
-- 'profunctors-5.2.2'
-- 'random-1.1'
-- 'reflection-2.1.3'
-- 'resourcet-1.2.0'
-- 'semigroupoids-5.2.2'
-- 'semigroups-0.18.4'
-- 'StateVar-1.1.0.4'
-- 'syb-0.7'
-- 'tagged-0.8.5'
-- 'tasty-1.0.1'
-- 'tasty-expected-failure-0.11.0.4'
-- 'tasty-hedgehog-0.1.0.2'
-- 'tasty-hunit-0.10.0.1'
-- 'terminal-size-0.3.2.1'
-- 'th-abstraction-0.2.6.0'
-- 'th-lift-0.7.8'
-- 'transformers-base-0.4.4'
-- 'transformers-compat-0.5.1.4'
-- 'unbounded-delays-0.1.1.0'
-- 'unique-0'
-- 'unliftio-core-0.1.1.0'
-- 'unordered-containers-0.2.9.0'
-- 'vector-0.12.0.1'
-- 'void-0.7.2'
-- 'wl-pprint-annotated-0.1.0.0'
+- attoparsec-0.13.2.2
+- exceptions-0.9.0
+- fail-4.9.0.0
+- hashable-1.2.7.0
+- integer-logarithms-1.0.2.1
+- llvm-hs-6.0.0
+- llvm-hs-pure-6.0.0
+- primitive-0.6.3.0
+- scientific-0.3.5.2
+- transformers-compat-0.6.0.6
+- unordered-containers-0.2.9.0
+- utf8-string-1.0.1.1
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

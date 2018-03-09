@@ -329,6 +329,7 @@ install:
   # - stack install llvm-general --no-terminal
 
   - travis_retry stack build --no-terminal --only-dependencies
+  - stack test llvm-hs
 
 script:
   - travis_retry stack build --no-terminal

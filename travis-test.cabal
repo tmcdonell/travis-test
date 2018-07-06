@@ -14,12 +14,13 @@ executable travis-test
   -- other-extensions:
   build-depends:
       base >= 4.7
-    , llvm-hs
+    -- , llvm-hs
     -- , cuda
     -- , cusparse
     -- , llvm-general
     -- , lens
     -- , llvm-hs >= 5.0.0
+    -- , accelerate
     -- , accelerate-llvm-native
     -- , accelerate-llvm-ptx
     -- , accelerate-examples

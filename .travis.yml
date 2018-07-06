@@ -24,12 +24,9 @@ addons:
       - hvr-ghc
       - ubuntu-toolchain-r-test
       - llvm-toolchain-trusty
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
-        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main'
-        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-      - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main'
-        key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+      - llvm-toolchain-trusty-4.0
+      - llvm-toolchain-trusty-5.0
+      - llvm-toolchain-trusty-6.0
 
     packages: &apt_packages
       # - nvidia-cuda-toolkit
@@ -75,8 +72,10 @@ matrix:
 
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=8.0.61-1
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
-    - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
-      compiler: "GHC 8.4"
+    # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
+
+    - env: GHC=8.6.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
+      compiler: "GHC 8.6"
       addons:
         apt:
           sources: *apt_sources
@@ -329,7 +328,7 @@ install:
   # - stack install llvm-general --no-terminal
 
   - travis_retry stack build --no-terminal --only-dependencies
-  - stack test llvm-hs
+  # - stack test llvm-hs
 
 script:
   - travis_retry stack build --no-terminal

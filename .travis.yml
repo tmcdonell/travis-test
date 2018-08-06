@@ -331,8 +331,9 @@ install:
   # - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
   # - stack install llvm-general --no-terminal
 
-  - ls $(stack path --compiler-bin)/../lib/ghc-${GHC}/rts/
-  - export LD_LIBRARY_PATH=$(stack path --compiler-bin)/../lib/ghc-${GHC}/rts:$LD_LIBRARY_PATH
+  - ls $(stack path --compiler-bin)/../lib/ghc-*/rts/
+  - export LD_LIBRARY_PATH=$(stack path --compiler-bin)/../lib/ghc-*/rts:${LD_LIBRARY_PATH}
+  - echo ${LD_LIBRARY_PATH}
 
   - travis_retry stack build --no-terminal --only-dependencies
   # - stack test llvm-hs

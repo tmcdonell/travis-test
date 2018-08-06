@@ -14,6 +14,7 @@ executable travis-test
   -- other-extensions:
   build-depends:
       base >= 4.7
+    , libffi
     -- , llvm-hs
     -- , cuda
     -- , cusparse

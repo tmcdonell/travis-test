@@ -40,9 +40,9 @@ addons:
       # - llvm-5.0-dev
       - llvm-6.0-dev
       # - ghc-8.4.1
-      - happy
-      - alex
-      - c2hs
+      - happy-1.19.5
+      - alex-3.1.7
+      # - c2hs
 
 matrix:
   include:
@@ -77,14 +77,14 @@ matrix:
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
     # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
 
-    - env: GHC=8.6.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
+    - env: GHC=8.6.1 CABAL=2.2 LLVM=6.0.0 CUDA=8.0.61-1
       compiler: "GHC 8.6"
       addons:
         apt:
           sources: *apt_sources
           packages:
             - *apt_packages
-            - cabal-install-2.0
+            - cabal-install-2.2
             - libtinfo-dev
 
   fast_finish: true

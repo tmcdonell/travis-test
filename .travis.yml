@@ -29,6 +29,7 @@ addons:
       - llvm-toolchain-trusty-6.0
 
     packages: &apt_packages
+      - dpkg
       # - nvidia-cuda-toolkit
       # - freeglut3-dev
       # - g++-4.8

@@ -86,6 +86,7 @@ matrix:
             - *apt_packages
             - cabal-install-2.2
             - libtinfo-dev
+            - ghc-8.4.3
 
   fast_finish: true
 
@@ -286,6 +287,11 @@ before_install:
   - source .travis/install-cuda-trusty.sh
   - ls -l /usr/local/cuda/lib ; true
 
+  # Install c2hs using system ghc
+  - export PATH=${PATH}:/opt/ghc/8.4.3/bin:${HOME}/.local/bin:${HOME}/.cabal/bin
+  - cabal update
+  - cabal install c2hs
+
   # Try to install LLVM manually
   # - export LLVM_HOME=${HOME}/llvm-${LLVM}
   # - export PATH=${LLVM_HOME}/bin:${PATH}
@@ -307,6 +313,7 @@ install:
   - which -a llc; true
   - which -a alex; true
   - which -a happy; true
+  - which -a c2hs; true
   - echo "$(stack exec ghc -- --version) [$(stack exec ghc -- --print-project-git-commit-id 2> /dev/null || echo '?')]"; true
   - stack --version; true
   - cabal --version; true

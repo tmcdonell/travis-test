@@ -339,9 +339,12 @@ install:
   # - stack install llvm-general --no-terminal
 
   # we need libffi7
-  - ls -d $(stack path --compiler-bin)/../lib/ghc-*/rts/
-  - export LD_LIBRARY_PATH=$(ls -d $(dirname $(stack path --compiler-bin))/lib/ghc-*/rts):$LD_LIBRARY_PATH
-  - echo ${LD_LIBRARY_PATH}
+  # - ls -d $(stack path --compiler-bin)/../lib/ghc-*/rts/
+  # - export LD_LIBRARY_PATH=$(ls -d $(dirname $(stack path --compiler-bin))/lib/ghc-*/rts):$LD_LIBRARY_PATH
+  # - echo ${LD_LIBRARY_PATH}
+  - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
+  - sudo apt-get update
+  - sudo apt-get install -y --allow-unauthenticated libffi7
 
   - travis_retry stack build --no-terminal --only-dependencies
   # - stack test llvm-hs

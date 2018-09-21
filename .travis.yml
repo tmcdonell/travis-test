@@ -30,6 +30,9 @@ addons:
       - llvm-toolchain-trusty-6.0
       - sourceline: "deb http://deb.debian.org/debian experimental main"
 
+    options:
+      - --allow-unauthenticated
+
     packages: &apt_packages
       - dpkg
       - libffi7

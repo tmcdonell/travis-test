@@ -257,6 +257,17 @@ before_install:
   - echo ${LLVM}
   - unset CC
 
+  # we need libffi7
+  # - ls -d $(stack path --compiler-bin)/../lib/ghc-*/rts/
+  # - export LD_LIBRARY_PATH=$(ls -d $(dirname $(stack path --compiler-bin))/lib/ghc-*/rts):$LD_LIBRARY_PATH
+  # - echo ${LD_LIBRARY_PATH}
+  # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
+  # - sudo apt-get update
+  # - sudo apt-get install -y --allow-unauthenticated libffi7
+  - sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 0x7638D0442B90D010
+  - sudo apt-get update
+  - sudo apt-get install -qy libffi7
+
   # Fetch stack
   - mkdir -p $HOME/bin
   - export PATH=$HOME/bin:$PATH
@@ -339,17 +350,6 @@ install:
 
   # - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
   # - stack install llvm-general --no-terminal
-
-  # we need libffi7
-  # - ls -d $(stack path --compiler-bin)/../lib/ghc-*/rts/
-  # - export LD_LIBRARY_PATH=$(ls -d $(dirname $(stack path --compiler-bin))/lib/ghc-*/rts):$LD_LIBRARY_PATH
-  # - echo ${LD_LIBRARY_PATH}
-  # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
-  # - sudo apt-get update
-  # - sudo apt-get install -y --allow-unauthenticated libffi7
-  - sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 0x7638D0442B90D010
-  - sudo apt-get update
-  - sudo apt-get install -qy libffi7
 
   - travis_retry stack build --no-terminal --only-dependencies
   # - stack test llvm-hs

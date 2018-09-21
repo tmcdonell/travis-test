@@ -267,7 +267,7 @@ before_install:
   - sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 0x7638D0442B90D010
   - sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 0x8B48AD6246925553
   # - sudo apt-get install debian-archive-keyring
-  - sudo apt-get update
+  # - sudo apt-get update
   - sudo apt-get install -qy libffi7
 
   # Fetch stack

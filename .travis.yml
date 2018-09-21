@@ -30,9 +30,6 @@ addons:
       - llvm-toolchain-trusty-6.0
       - sourceline: "deb http://deb.debian.org/debian experimental main"
 
-    options:
-      - --allow-unauthenticated
-
     packages: &apt_packages
       - dpkg
       - libffi7
@@ -50,6 +47,9 @@ addons:
       - happy-1.19.5
       - alex-3.1.7
       # - c2hs
+
+env:
+  - travis_apt_get_options=--allow-unauthenticated
 
 matrix:
   include:

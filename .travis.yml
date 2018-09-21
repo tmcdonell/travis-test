@@ -14,6 +14,7 @@ cache:
   timeout: 600
   directories:
     - $HOME/.stack/snapshots
+    - $HOME/.cabal/bin
     # - $HOME/.stack
     # - $HOME/llvm
     # - .stack-work/install

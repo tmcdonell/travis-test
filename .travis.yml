@@ -32,6 +32,7 @@ addons:
 
     packages: &apt_packages
       - dpkg
+      - debian-keyring
       - debian-archive-keyring
       # - libffi7
       # - nvidia-cuda-toolkit

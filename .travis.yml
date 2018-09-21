@@ -14,7 +14,7 @@ cache:
   timeout: 600
   directories:
     - $HOME/.stack/snapshots
-    - $HOME/.cabal/bin
+    # - $HOME/.cabal/bin
     # - $HOME/.stack
     # - $HOME/llvm
     # - .stack-work/install
@@ -82,16 +82,14 @@ matrix:
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
     # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
 
-    - env: GHC=8.6.1 CABAL=2.2 LLVM=6.0.0 CUDA=8.0.61-1
+    - env: GHC=8.6.1 LLVM=6.0.0 CUDA=8.0.61-1
       compiler: "GHC 8.6"
       addons:
         apt:
           sources: *apt_sources
           packages:
             - *apt_packages
-            - cabal-install-2.2
             - libtinfo-dev
-            - ghc-8.4.3
 
   fast_finish: true
 
@@ -243,7 +241,7 @@ before_install:
   # - unset CC
   - export PATH=/opt/alex/3.1.7/bin:${PATH}
   - export PATH=/opt/happy/1.19.5/bin:${PATH}
-  - export PATH=/opt/cabal/${CABAL}/bin:${PATH}
+  # - export PATH=/opt/cabal/${CABAL}/bin:${PATH}
   # - export PATH=/opt/ghc/${GHC}/bin:${PATH}
   # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
   # - export PATH=/usr/local/cuda/bin:${PATH}
@@ -293,9 +291,9 @@ before_install:
   # - ls -l /usr/local/cuda/lib ; true
 
   # Install c2hs using system ghc
-  - export PATH=${PATH}:/opt/ghc/8.4.3/bin:${HOME}/.local/bin:${HOME}/.cabal/bin
-  - cabal update
-  - cabal install c2hs
+  # - export PATH=${PATH}:/opt/ghc/8.4.3/bin:${HOME}/.local/bin:${HOME}/.cabal/bin
+  # - cabal update
+  # - cabal install c2hs
 
   # Try to install LLVM manually
   # - export LLVM_HOME=${HOME}/llvm-${LLVM}

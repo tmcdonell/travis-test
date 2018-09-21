@@ -16,7 +16,7 @@ executable travis-test
       base >= 4.7
     , libffi
     -- , llvm-hs
-    , cuda
+    -- , cuda
     -- , cusparse
     -- , llvm-general
     -- , lens

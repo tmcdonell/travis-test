@@ -348,6 +348,7 @@ install:
   # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
   # - sudo apt-get update
   # - sudo apt-get install -y --allow-unauthenticated libffi7
+  - sudo apt-get update
   - sudo apt-get install -qy libffi7
 
   - travis_retry stack build --no-terminal --only-dependencies

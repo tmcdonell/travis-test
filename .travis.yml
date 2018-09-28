@@ -271,6 +271,10 @@ before_install:
   # - sudo apt-get update
   # - sudo apt-get install -qy libffi7
 
+  # Install CUDA
+  - source .travis/install-cuda-trusty.sh
+  # - ls -l /usr/local/cuda/lib ; true
+
   # Fetch stack
   - mkdir -p $HOME/bin
   - export PATH=$HOME/bin:$PATH
@@ -298,10 +302,6 @@ before_install:
   # - ls -la $HOME/.stack/indices
   # - ls -la $HOME/.stack/indices/*
   # - ls -la $HOME/.stack/indices/*/*
-
-  # Install CUDA
-  - source .travis/install-cuda-trusty.sh
-  # - ls -l /usr/local/cuda/lib ; true
 
   # Install c2hs using system ghc
   # - export PATH=${PATH}:/opt/ghc/8.4.3/bin:${HOME}/.local/bin:${HOME}/.cabal/bin

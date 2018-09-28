@@ -25,7 +25,10 @@ packages:
 
 extra-deps:
 - git:    https://github.com/tmcdonell/cuda.git
-  commit: 89384d9172c93e2f9cd2abb3f5c751700e579a89
+  commit: e9ef79a4b7688976121c464bc674495021b652bb
+
+- git:    https://github.com/tmcdonell/cufft.git
+  commit: d8530e8d2e8bcececee25bed1f6878398a05dd7e
 
 # # https://github.com/haskell/c2hs/pull/213
 # - git:    https://github.com/vmchale/c2hs.git

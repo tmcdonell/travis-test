@@ -1,6 +1,6 @@
 module Main where
 
-import Foreign.LibFFI
+-- import Foreign.LibFFI
 
 main :: IO ()
 main = do

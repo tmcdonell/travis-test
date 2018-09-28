@@ -82,7 +82,8 @@ matrix:
     # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
     # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
 
-    - env: GHC=8.6.1 LLVM=6.0.0 CUDA=10.0.130-1
+    # - env: GHC=8.6.1 LLVM=6.0.0 CUDA=10.0.130-1
+    - env: GHC=8.6.1 LLVM=6.0.0 CUDA=6.5-14
       compiler: "GHC 8.6"
       addons:
         apt:
@@ -265,10 +266,10 @@ before_install:
   # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
   # - sudo apt-get update
   # - sudo apt-get install -y --allow-unauthenticated libffi7
-  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553
+  # - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553 0x04EE7237B7D453EC
   # - sudo apt-get install debian-archive-keyring
-  - sudo apt-get update
-  - sudo apt-get install -qy libffi7
+  # - sudo apt-get update
+  # - sudo apt-get install -qy libffi7
 
   # Fetch stack
   - mkdir -p $HOME/bin

@@ -29,7 +29,7 @@ addons:
       - llvm-toolchain-trusty-4.0
       - llvm-toolchain-trusty-5.0
       - llvm-toolchain-trusty-6.0
-      - llvm-toolchain-trusty-7.0
+      - llvm-toolchain-trusty-7
       - sourceline: "deb http://deb.debian.org/debian experimental main"
 
     packages: &apt_packages

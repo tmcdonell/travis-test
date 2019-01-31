@@ -6,9 +6,10 @@
 # dist: precise
 
 language: generic
+# dist: xenial
 dist: trusty
-sudo: required
 # dist: precise
+# sudo: required
 
 cache:
   timeout: 600
@@ -28,6 +29,7 @@ addons:
       - llvm-toolchain-trusty-4.0
       - llvm-toolchain-trusty-5.0
       - llvm-toolchain-trusty-6.0
+      - llvm-toolchain-trusty-7.0
       - sourceline: "deb http://deb.debian.org/debian experimental main"
 
     packages: &apt_packages
@@ -83,7 +85,7 @@ matrix:
     # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
 
     # - env: GHC=8.6.1 LLVM=6.0.0 CUDA=10.0.130-1
-    - env: GHC=8.6.1 LLVM=6.0.0 CUDA=6.5-14
+    - env: GHC=8.6.1 LLVM=7.0.0 CUDA=6.5-14
       compiler: "GHC 8.6"
       addons:
         apt:
@@ -91,6 +93,7 @@ matrix:
           packages:
             - *apt_packages
             - libtinfo-dev
+            - llvm-7-dev
 
   fast_finish: true
 
@@ -272,7 +275,7 @@ before_install:
   # - sudo apt-get install -qy libffi7
 
   # Install CUDA
-  - source .travis/install-cuda-trusty.sh
+  # - source .travis/install-cuda-trusty.sh
   # - ls -l /usr/local/cuda/lib ; true
 
   # Fetch stack
@@ -308,12 +311,12 @@ before_install:
   # - cabal update
   # - cabal install c2hs
 
-  # ghc-8.6 builds a broken version of c2hs
-  - |
-      if [ ${GHC%.*} == "8.6" -a ! -x "$(which c2hs)" ]; then
-        travis_retry stack --stack-yaml=stack-8.4.yaml setup --no-terminal --no-system-ghc
-        travis_retry stack --stack-yaml=stack-8.4.yaml install c2hs --fast --no-terminal
-      fi
+  # # ghc-8.6 builds a broken version of c2hs
+  # - |
+  #     if [ ${GHC%.*} == "8.6" -a ! -x "$(which c2hs)" ]; then
+  #       travis_retry stack --stack-yaml=stack-8.4.yaml setup --no-terminal --no-system-ghc
+  #       travis_retry stack --stack-yaml=stack-8.4.yaml install c2hs --fast --no-terminal
+  #     fi
 
   # Try to install LLVM manually
   # - export LLVM_HOME=${HOME}/llvm-${LLVM}

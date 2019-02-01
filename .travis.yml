@@ -24,8 +24,8 @@ addons:
 
     packages: &apt_packages
       - dpkg
-      - gcc-5
-      - g++-5
+      - gcc-8
+      - g++-8
       - happy-1.19.5
       - alex-3.1.7
 
@@ -58,7 +58,7 @@ before_install:
   - echo ${LLVM}
   - unset CC
 
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-8
   - sudo update-alternatives --config gcc
 
   # we need libffi7
@@ -88,12 +88,11 @@ before_install:
 
   # - travis_retry curl -sSL https://get.haskellstack.org/ | sh
 
-  - ln -s stack-${GHC%.*}.yaml stack.yaml
+  # - ln -s stack-${GHC%.*}.yaml stack.yaml
 
   - source .travis/install-stack.sh
-  - source .travis/update-ghc-settings.sh
-
-  - travis_retry stack setup --no-terminal
+  # - source .travis/update-ghc-settings.sh
+  # - travis_retry stack setup --no-terminal
   # - travis_retry stack setup --upgrade-cabal
 
   # Install c2hs using system ghc

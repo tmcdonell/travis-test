@@ -38,7 +38,7 @@ addons:
       # - libffi7
       # - nvidia-cuda-toolkit
       # - freeglut3-dev
-      # - g++-4.8
+      - g++-4.8
       # - libgmp-dev
       # - happy-1.19.5
       # - alex-3.1.7
@@ -269,10 +269,10 @@ before_install:
   # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
   # - sudo apt-get update
   # - sudo apt-get install -y --allow-unauthenticated libffi7
-  # - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553 0x04EE7237B7D453EC
-  # - sudo apt-get install debian-archive-keyring
-  # - sudo apt-get update
-  # - sudo apt-get install -qy libffi7
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553 0x04EE7237B7D453EC
+  - sudo apt-get install debian-archive-keyring
+  - sudo apt-get update
+  - sudo apt-get install -qy libffi7
 
   # Install CUDA
   # - source .travis/install-cuda-trusty.sh

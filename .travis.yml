@@ -24,8 +24,8 @@ addons:
 
     packages: &apt_packages
       - dpkg
-      - gcc-8
-      - g++-8
+      - gcc-5
+      - g++-5
       - happy-1.19.5
       - alex-3.1.7
 
@@ -57,6 +57,9 @@ before_install:
   - echo ${GHC}
   - echo ${LLVM}
   - unset CC
+
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+  - sudo update-alternatives --config gcc
 
   # we need libffi7
   # - ls -d $(stack path --compiler-bin)/../lib/ghc-*/rts/

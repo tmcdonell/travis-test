@@ -1,6 +1,6 @@
 # vim: nospell
 
-language: minimal
+language: generic
 # dist: xenial
 dist: trusty
 # dist: precise

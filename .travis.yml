@@ -21,7 +21,6 @@ addons:
     sources: &apt_sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      - sourceline: "deb http://deb.debian.org/debian experimental main"
 
     packages: &apt_packages
       - dpkg
@@ -66,6 +65,10 @@ before_install:
   # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
   # - sudo apt-get update
   # - sudo apt-get install -y --allow-unauthenticated libffi7
+  - cat /etc/apt/sources.list
+
+  - echo "deb http://deb.debian.org/debian experimental main" | sudo tee -a /etc/apt/sources.list
+
   - cat /etc/apt/sources.list
 
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553 0x04EE7237B7D453EC

@@ -1,11 +1,6 @@
 # vim: nospell
-# # language: c
-# language: generic
-# # sudo: required
-# # dist: trusty
-# dist: precise
 
-language: generic
+language: minimal
 # dist: xenial
 dist: trusty
 # dist: precise
@@ -15,6 +10,7 @@ cache:
   timeout: 600
   directories:
     - $HOME/.stack/snapshots
+    - $HOME/.local/bin
     # - $HOME/.cabal/bin
     # - $HOME/.stack
     # - $HOME/llvm
@@ -25,223 +21,30 @@ addons:
     sources: &apt_sources
       - hvr-ghc
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty
-      - llvm-toolchain-trusty-4.0
-      - llvm-toolchain-trusty-5.0
-      - llvm-toolchain-trusty-6.0
-      - llvm-toolchain-trusty-7
       - sourceline: "deb http://deb.debian.org/debian experimental main"
 
     packages: &apt_packages
       - dpkg
-      # - debian-archive-keyring
-      # - libffi7
-      # - nvidia-cuda-toolkit
-      # - freeglut3-dev
-      # - g++-4.8
       - gcc-5
       - g++-5
-      # - libgmp-dev
-      # - happy-1.19.5
-      # - alex-3.1.7
-      # - libfftw3-dev
-      # - llvm-4.0-dev
-      # - llvm-5.0-dev
-      # - llvm-6.0-dev
-      # - ghc-8.4.1
       - happy-1.19.5
       - alex-3.1.7
-      # - c2hs
 
 matrix:
+  fast_finish: true
   include:
-    # - env: GHC=7.8.4 CABAL=1.18 LLVM=4.0.0
-    #   compiler: "GHC 7.8"
-    #   addons:
-    #     apt:
-    #       sources: *apt_sources
-    #       packages:
-    #         - *apt_packages
-    #         - cabal-install-1.18
-
-    # - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
-    #   compiler: "GHC 7.10"
-    #   addons:
-    #     apt:
-    #       sources: *apt_sources
-    #       packages:
-    #         - *apt_packages
-    #         - cabal-install-1.22
-
-    # - env: GHC=8.0.2 CABAL=1.24 LLVM=4.0.0
-    #   compiler: "GHC 8.0"
-    #   addons:
-    #     apt:
-    #       sources: *apt_sources
-    #       packages:
-    #         - *apt_packages
-    #         - cabal-install-1.24
-
-    # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=8.0.61-1
-    # - env: GHC=8.2.1 CABAL=2.0 LLVM=5.0.0 CUDA=9.0.176-1
-    # - env: GHC=8.4.1 CABAL=2.0 LLVM=6.0.0 CUDA=8.0.61-1
-
-    # - env: GHC=8.6.1 LLVM=6.0.0 CUDA=10.0.130-1
-    - env: GHC=8.6.1 LLVM=7.0.0 CUDA=6.5-14
+    - env: GHC=8.6.3 LLVM=7.0.1
       compiler: "GHC 8.6"
       addons:
         apt:
-          sources: *apt_sources
+          sources:
+            - *apt_sources
+            - llvm-toolchain-trusty-7
           packages:
             - *apt_packages
             - libtinfo-dev
             - llvm-7-dev
 
-  fast_finish: true
-
-
-# cache:
-#   directories:
-#     - $HOME/.stack
-#     - $HOME/llvm
-#     - .stack-work/install
-
-# addons:
-#   apt:
-#     sources: &apt_sources
-#       - hvr-ghc
-#       - ubuntu-toolchain-r-test
-#       - llvm-toolchain-precise
-#       - llvm-toolchain-precise-3.5
-#       - llvm-toolchain-precise-3.6
-#       - llvm-toolchain-precise-3.7
-#       - llvm-toolchain-precise-3.8
-#       - llvm-toolchain-precise-3.9
-#       # - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-#       #   key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-#       # - llvm-toolchain-precise-4.0
-#       - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-4.0 main'
-#         key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-
-#     packages: &apt_packages
-#       - nvidia-cuda-toolkit
-#       - g++-4.8
-#       - libgmp-dev
-#       - happy-1.19.5
-#       - alex-3.1.7
-#       - libsiloh5-0
-#       - libhdf5-openmpi-dev
-#       - llvm-4.0-dev
-
-# matrix:
-#   include:
-#     - env: GHC=7.8.4 CABAL=1.18 LLVM-3.5.2
-#       compiler: "GHC 7.8"
-#       addons:
-#         apt:
-#           sources: *apt_sources
-#           packages:
-#             - *apt_packages
-#             - cabal-install-1.18
-#             - llvm-3.5-dev
-#             - libedit-dev
-
-    # - env: GHC=7.10.3 CABAL=1.22 LLVM=4.0.0
-    #   compiler: "GHC 7.10"
-    #   addons:
-    #     apt:
-    #       sources: *apt_sources
-    #       packages:
-    #         - *apt_packages
-    #         - cabal-install-1.22
-    #         - llvm-4.0-dev
-
-    # - env: GHC=8.0.2 CABAL=1.24 LLVM=4.0.0
-    #   compiler: "GHC 8.0"
-    #   addons:
-    #     apt:
-    #       sources: *apt_sources
-    #       packages:
-    #         - *apt_packages
-    #         - cabal-install-1.24
-    #         - llvm-4.0-dev
-
-# compiler:
-  # - GHC-7.8.4
-  # - GHC-7.10.3
-  # - GHC-8.0.2
-
-# env:
-#   - FOO="foo"
-#   - BAR="bar"
-
-# matrix:
-#   fast_finish: true
-#   allow_failures:
-#     - compiler: GHC-7.8.4
-#       env: BAR="bar"
-
-# matrix:
-#   include:
-#     - env: GHC=7.10.3 CABAL=1.22 LLVM=3.5.2
-#       compiler: "GHC 7.10"
-#       addons: { apt: { sources: [ hvr-ghc, ubuntu-toolchain-r-test ], packages: [ nvidia-cuda-toolkit, g++-4.8, libgmp-dev, cabal-install-1.22, happy-1.19.5, alex-3.1.7 ] }}
-
-#     - env: GHC=7.10.3 LLVM=3.5.2
-#       addons:
-#         apt:
-#           sources:
-#             - hvr-ghc
-#             - ubuntu-toolchain-r-test
-#           packages:
-#             - libgmp-dev              # ghc
-#             - libstdc++6              # llvm
-#             - cabal-install-1.22
-#             # - nvidia-common
-#             # - nvidia-current
-#             - nvidia-cuda-toolkit
-#             # - nvidia-cuda-dev
-#             # - llvm-3.6-dev
-#             # - llvm-3.5-dev
-
-    # - env: GHC=7.8.4 LLVM=3.4 CUDA=7.0-28
-    #   compiler: "#GHC 7.8"
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - hvr-ghc
-    #       packages:
-    #         - ghc-7.8.4
-    #         - cabal-install-1.22
-    #         - happy-1.19.5
-    #         - alex-3.1.4
-    #         - nvidia-cuda-toolkit
-
-    # - env: GHC=7.10.3 LLVM=3.5 CUDA=7.0-28
-    #   compiler: "#GHC 7.10"
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - hvr-ghc
-    #         # - llvm-toolchain-precise-3.5
-    #         # - ubuntu-toolchain-r-test
-    #       packages:
-    #         - ghc-7.10.3
-    #         - cabal-install-1.22
-    #         - happy-1.19.5
-    #         - alex-3.1.4
-    #         # - llvm-3.5
-    #         - nvidia-cuda-toolkit
-    #         - nvidia-cuda-dev
-    #         - nvidia-opencl-dev
-    #         - nvidia-current
-
-# cache:
-#   directories:
-#     - $HOME/.ghc
-#     - $HOME/.cabal/bin
-#     - $HOME/.cabal/lib
-#     - $HOME/.cabal/share
 
 before_install:
   # - unset CC
@@ -252,14 +55,6 @@ before_install:
   # - export PATH=/usr/lib/llvm-${LLVM}/bin:${PATH}
   # - export PATH=/usr/local/cuda/bin:${PATH}
 
-  # - echo $CC
-  # - export GHC=${CC:4}
-  # - |
-  #     case ${GHC} in
-  #       7.8.*)  export LLVM="3.4.2" ;;
-  #       7.10.*) export LLVM="3.5.2" ;;
-  #       8.0.*)  export LLVM="3.8.1" ;;
-  #     esac
   - echo ${GHC}
   - echo ${LLVM}
   - unset CC
@@ -271,10 +66,11 @@ before_install:
   # - sudo apt-add-repository "deb http://deb.debian.org/debian experimental main"
   # - sudo apt-get update
   # - sudo apt-get install -y --allow-unauthenticated libffi7
+
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 0x7638D0442B90D010 0x8B48AD6246925553 0x04EE7237B7D453EC
   - sudo apt-get install debian-archive-keyring
   - sudo apt-get update
-  - sudo apt-get install -qy libffi7
+  - sudo apt-get install libffi7
 
   # Install CUDA
   # - source .travis/install-cuda-trusty.sh
@@ -292,21 +88,6 @@ before_install:
   - ln -s stack-${GHC%.*}.yaml stack.yaml
   - travis_retry stack setup --no-terminal
   # - travis_retry stack setup --upgrade-cabal
-
-  # - |
-  #     if [ ${GHC%.*} == 7.8 ]; then
-  #       # required to install the 'cuda' package
-  #       travis_retry sudo env PATH=$PATH stack setup --upgrade-cabal --allow-different-user --no-terminal
-  #       # GCE architecture doesn't have enough space in /tmp to install stack
-  #       # locally, so we need to install via apt and then --upgrade-cabal using
-  #       # 'sudo'. This fixes the resulting permissions.
-  #       sudo chown -R $USER:$USER $HOME/.stack
-  #     fi
-  # - ls -la $HOME
-  # - ls -la $HOME/.stack
-  # - ls -la $HOME/.stack/indices
-  # - ls -la $HOME/.stack/indices/*
-  # - ls -la $HOME/.stack/indices/*/*
 
   # Install c2hs using system ghc
   # - export PATH=${PATH}:/opt/ghc/8.4.3/bin:${HOME}/.local/bin:${HOME}/.cabal/bin

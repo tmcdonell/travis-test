@@ -120,6 +120,8 @@ install:
   - c2hs --version; true
   - echo $PATH
   - pkg-config --list-all; true
+  - pkg-config --cflags cuda-10.1; true
+  - pkg-config --libs cuda-10.1; true
 
   # - mkdir -p $HOME/bin
   # - export PATH=$HOME/bin:$PATH
@@ -131,11 +133,10 @@ install:
 
   # - sed -i"" -e "s,/usr/bin/gcc,/usr/bin/gcc-4.8," $(stack path --ghc-paths 2>/dev/null)/ghc-${GHC}/lib/ghc-${GHC}/settings
   # - stack install llvm-general --no-terminal
-
-  - travis_retry stack build --no-terminal --only-dependencies
   # - stack test llvm-hs
 
 script:
+  - travis_retry stack build --no-terminal --only-dependencies
   - travis_retry stack build --no-terminal
   - stack exec travis-test
 

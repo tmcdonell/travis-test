@@ -70,6 +70,9 @@ before_install:
   # - source .travis/install-cuda-trusty.sh
   # - ls -l /usr/local/cuda/lib ; true
 
+  - dpkg -c cuda-repo-ubuntu1604_${CUDA}_amd64.deb
+  - apt-cache search cuda
+
   # Fetch stack
   # - mkdir -p $HOME/bin
   # - export PATH=$HOME/bin:$PATH

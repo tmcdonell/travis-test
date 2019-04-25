@@ -124,7 +124,8 @@ install:
   - echo $PATH
   - pkg-config --list-all; true
   - pkg-config --cflags cuda-10.1; true
-  - pkg-config --libs cuda-10.1; true
+  - pkg-config --libs --static cuda-10.1; true
+  - pkg-config --libs --static cublas-10.0; true
 
   # - mkdir -p $HOME/bin
   # - export PATH=$HOME/bin:$PATH

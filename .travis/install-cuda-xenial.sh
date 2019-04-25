@@ -17,6 +17,11 @@ export CUDA_VER_MAJOR=${CUDA_VER%.*}
 export CUDA_VER_MINOR=${CUDA_VER#*.}
 export CUDA_APT=${CUDA_VER/./-}
 
+export CUDA_HOME=/usr/local/cuda-${CUDA_VER}
+export LD_LIBRARY_PATH=${CUDA_HOME}/nvvm/lib64:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+export PATH=${CUDA_HOME}/bin:${PATH}
+
 # The cuda-core package is deprecated in favour of cuda-compiler, available from
 # version 9.1 onwards
 #
@@ -37,6 +42,7 @@ if [ ${CUDA_INSTALL_EXTRA_LIBS:-1} -ne 0 ]; then
   fi
   if [ ${CUDA_VER_MAJOR} -eq 10 -a ${CUDA_VER_MINOR} -eq 1 ]; then
     CUDA_PKGS+="cuda-cublas-dev-10-0 "
+    LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:${LD_LIBRARY_PATH}
   else
     CUDA_PKGS+="cuda-cublas-dev-${CUDA_APT} "
   fi
@@ -44,10 +50,6 @@ fi
 
 travis_retry sudo apt-get install -y ${CUDA_PKGS}
 travis_retry sudo apt-get clean
-export CUDA_HOME=/usr/local/cuda-${CUDA_VER}
-export LD_LIBRARY_PATH=${CUDA_HOME}/nvvm/lib64:${LD_LIBRARY_PATH}
-export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
-export PATH=${CUDA_HOME}/bin:${PATH}
 
 # sudo ldconfig ${CUDA_HOME}/lib64
 # sudo ldconfig ${CUDA_HOME}/nvvm/lib64

@@ -144,7 +144,7 @@ install:
   # - stack test llvm-hs
 
 script:
-  - travis_retry stack build --no-terminal --only-dependencies --extra-lib-dirs=/usr/local/cuda-10.0/lib64
+  - travis_retry stack build --no-terminal --only-dependencies --extra-include-dirs=/usr/local/cuda-10.0/include --extra-lib-dirs=/usr/local/cuda-10.0/lib64
   - travis_retry stack build --no-terminal
   - stack exec travis-test
 

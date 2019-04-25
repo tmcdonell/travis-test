@@ -16,6 +16,18 @@ extra-deps:
 - git:    https://github.com/tmcdonell/cufft.git
   commit: 6ef900e0cd2c40b3babf69bfb7b4bf93349821e9
 
+- git:    https://github.com/tmcdonell/cublas.git
+  commit: d5cf7292b4704616d3007ebe591352d5a2e2bbdf
+
+- git:    https://github.com/tmcdonell/cusparse.git
+  commit: 9f5b02aa79e54f79c3d003969cae4d597207e734
+
+- git:    https://github.com/tmcdonell/cusolver.git
+  commit: c64363fe776fa920d78826f6c98193502ebba294
+
+- git:    https://github.com/tmcdonell/nvvm.git
+  commit: be9fc3a600aa3809493d7e69d538038e5efff723
+
 # Override default flag values for local packages and extra-deps
 # flags: {}
 

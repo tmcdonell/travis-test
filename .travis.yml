@@ -127,6 +127,8 @@ install:
   - pkg-config --libs --static cuda-10.1; true
   - pkg-config --libs --static cublas-10.0; true
 
+  - echo $LD_LIBRARY_PATH
+
   # - mkdir -p $HOME/bin
   # - export PATH=$HOME/bin:$PATH
   # - ln -s /usr/bin/g++-4.8 $HOME/bin/g++
@@ -147,7 +149,5 @@ script:
 after_failure:
   - df -h
   - du -hs .
-
-  - ls -R /usr
-  - locate libcufft
+  - ls -R /usr/local/cuda*
 

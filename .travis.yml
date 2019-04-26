@@ -130,6 +130,7 @@ install:
   - echo $LD_LIBRARY_PATH
 
   - sudo find /usr -name libcublas*
+  - sudo find /usr -name cublas_v2.h
 
   # - mkdir -p $HOME/bin
   # - export PATH=$HOME/bin:$PATH

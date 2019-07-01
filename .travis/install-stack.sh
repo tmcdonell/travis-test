@@ -36,3 +36,7 @@ if [ ${GHC} != head -a ${UPGRADE_CABAL:-0} -ne 0 ]; then
   travis_retry stack setup --no-terminal --upgrade-cabal
 fi
 
+if [ ${GHC%.*} == "7.8" ]; then
+  travis_retry stack upgrade --binary-version 1.9.3
+fi
+

@@ -13,13 +13,13 @@ executable travis-test
   -- other-modules:
   -- other-extensions:
   build-depends:
-      base >= 4.7
-    , cuda
-    , cufft
-    , cublas
-    , cusparse
-    , cusolver
-    , nvvm
+      base >= 4.6 && < 5
+    -- , cuda
+    -- , cufft
+    -- , cublas
+    -- , cusparse
+    -- , cusolver
+    -- , nvvm
 
   -- ghc-options:          -fllvm -optlo-O3
 
